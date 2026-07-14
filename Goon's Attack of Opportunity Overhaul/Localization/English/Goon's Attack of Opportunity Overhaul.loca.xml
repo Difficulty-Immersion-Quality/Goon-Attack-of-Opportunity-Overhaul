@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentList>
+	<!-- Opportunity Attack -->
+	<!-- "AttackOfOpportunity" -->
+	<content contentuid="h499b92e3gd78cg4436gb1f9g8ee659fc4e93" version="1">Automatically attack an enemy when they move out of your reach or roll a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.</content>
+	<!-- "Interrupt_AttackOfOpportunity" -->
+	<content contentuid="h4cd0c331g3118g4cb5g833bgf8480d10d707" version="1">Opportunity Attack (Main Hand)</content>
+	<content contentuid="hc3131359g5a0ag4c0agbe13gb6b30826c824" version="1">Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.</content>
+
+	<!--  -->
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
+
+	<!--  -->
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
+
+	<!--  -->
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
+</contentList>

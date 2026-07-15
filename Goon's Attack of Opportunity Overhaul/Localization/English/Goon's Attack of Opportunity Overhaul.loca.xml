@@ -3,13 +3,18 @@
 	<!-- Opportunity Attack -->
 	<!-- "AttackOfOpportunity" -->
 	<content contentuid="h499b92e3gd78cg4436gb1f9g8ee659fc4e93" version="1">Automatically attack an enemy when they move out of your reach or roll a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.</content>
+	
 	<!-- "Interrupt_AttackOfOpportunity" -->
-	<content contentuid="h4cd0c331g3118g4cb5g833bgf8480d10d707" version="1">Opportunity Attack (Main Hand)</content>
+	<content contentuid="h4cd0c331g3118g4cb5g833bgf8480d10d707" version="1">Opportunity Attack: Main Hand Attack</content>
 	<content contentuid="hc3131359g5a0ag4c0agbe13gb6b30826c824" version="1">Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.</content>
 
-	<!--  -->
-	<!-- "" -->
-	<content contentuid="" version="1"></content>
+	<!-- Opportunity Attack - Variants -->
+	<!-- "Goon_Interrupt_AttackOfOpportunity_Offhand" -->
+	<content contentuid="h89567371g5feag4f90g8a82g727325b08dce" version="1">Opportunity Attack: Off-Hand Attack (Melee)</content>
+	<!-- "Goon_Interrupt_AttackOfOpportunity_Unarmed" -->
+	<content contentuid="h753f6667g03afg4f87g97c9ge006ca604e57" version="1">Opportunity Attack: Unarmed Strike</content>
+	<!-- "Goon_Interrupt_AttackOfOpportunity_Shove" -->
+	<content contentuid="hea8c6863gc545g42adg9eb5g484f9f7a1ca5" version="1">Opportunity Attack: Shove</content>
 
 	<!--  -->
 	<!-- "" -->

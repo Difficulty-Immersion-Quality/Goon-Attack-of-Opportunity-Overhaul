@@ -9,9 +9,10 @@
 // TODO: Ranged variants.
 // TODO: Grapple variant.
 // TODO: Range checks. Going to have to have a way to snag existing melee range, or create functions to get estimates.
-// TODO: Go over main AoO functions and create an inverted copy for appropriate Critical Miss context.
 // TODO: Decide how best to provide weapon action interrupts. HasSpell osiris/SE would work, but was hoping for something in stats.
 // TODO: WieldingWeapon checks only for strict version. Otherwise allow weapon swapping. MCM scope creep or optional file?
+// Note: Swapping weapon sets don't trigger OnEquip status events, so WieldingWeapon checks in EnableCondition is ass.
+// Note: It appears that using a function with a ConditionResult inside it for AoO interrupt Conditions removes UI feedback. I'm guessing that the ConditionResult is attached to OnLeaveAttackRange?
 
 new entry "AttackOfOpportunity"
 type "PassiveData"
@@ -24,18 +25,13 @@ using "AttackOfOpportunity"
 // data "Icon" "PassiveFeature_AttackOfOpportunity"
 // data "Properties" "Highlighted"
 // data "Boosts" "UnlockInterrupt(Interrupt_AttackOfOpportunity)"
-data "Boosts" "UnlockInterrupt(Interrupt_AttackOfOpportunity);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Offhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Unarmed);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Shove)"
-
-// ==================================== Opportunity Attack: Main Hand Attack
-// UseSpell(SpellId(SpellId),IgnoreHasSpell(Boolean),IgnoreChecks(Boolean),Arg4(Boolean),SpellCastGuid(Guid),IgnoreBlindness(Boolean))
+data "Boosts" "UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Mainhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Offhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Unarmed);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Shove)"
 
 new entry "Interrupt_AttackOfOpportunity"
 type "InterruptData"
 using "Interrupt_AttackOfOpportunity"
 // // Opportunity Attack
 // data "DisplayName" "ha47b8d48g1a33g43e3gb98agc3b2c22668b8;1"
-// // Opportunity Attack: Main Hand Attack
-data "DisplayName" "h4cd0c331g3118g4cb5g833bgf8480d10d707;1"
 // // Attack an enemy moving out of your reach.
 // data "Description" "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1"
 // data "Icon" "PassiveFeature_AttackOfOpportunity"
@@ -43,17 +39,25 @@ data "DisplayName" "h4cd0c331g3118g4cb5g833bgf8480d10d707;1"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "IsAbleToReact(context.Observer) and not Self(context.Observer, context.Target) and Enemy() and not HasStatus('SANCTUARY',context.Source) and not WieldingWeapon('Ammunition', false, false, context.Source) and not (not Player(context.Source) and Tagged('AI_IGNORED_TARGET')  and not HasStatus('GNOLL_SUDDENRUSH')) and not HasStatus('SHOCKWAVE') and not (HasStatus('MOBILE_NO_AOO', context.Source) and HasStatus('MOBILE_NO_AOO_SOURCE', context.Target)) and not HasStatus('FLAMING_SPHERE_AURA') and not HasStatus('SNEAKING',context.Target) and not HasStatus('SG_Ignore_AOO',context.Target)  and not AnyEntityIsItem() and not HasSpellFlag(SpellFlags.IgnoreAoO, context.Target) and not (HasStatus('FANCYFOOTWORK', context.Source,context.Target) and HasStatus('FANCYFOOTWORK_OWNER', context.Target)) and (not HasStatus('PANACHE', context.Source)) or (HasStatus('PANACHE', context.Source) and HasStatus('PANACHE_OWNER', context.Target));"
-data "Conditions" "Goon_AttackOfOpportunityConditions_Lenient() and not Self(context.Observer, context.Target)"
+data "Conditions" "Goon_AttackOfOpportunityConditions()"
 // data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source)):UseAttack();IF(HasPassive('Sentinel_ZeroSpeed',context.Source)):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
-// data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and not HasInterruptedAttack()):UseSpell(Goon_Target_MainHandAttack_AoO,true,true,true);IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and HasInterruptedAttack()):UseSpell(SWAP,Goon_Target_MainHandAttack_AoO,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not HasInterruptedAttack()):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and HasInterruptedAttack()):UseSpell(SWAP,Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
-data "Properties" "UseSpell(SWAP,Goon_Target_MainHandAttack_AoO,true,true,true)"
 // data "Cost" "ReactionActionPoint:1"
 // data "InterruptDefaultValue" "Enabled"
 // data "EnableCondition" "not HasStatus('SG_Blinded')"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and WieldingWeapon('Melee')"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "EnableContext" "OnStatusApplied;OnStatusRemoved;OnEquip"
 data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== Opportunity Attack: Main Hand Attack
+// UseSpell(SpellId(SpellId),IgnoreHasSpell(Boolean),IgnoreChecks(Boolean),Arg4(Boolean),SpellCastGuid(Guid),IgnoreBlindness(Boolean))
+
+new entry "Goon_Interrupt_AttackOfOpportunity_Mainhand"
+type "InterruptData"
+using "Interrupt_AttackOfOpportunity"
+// // Opportunity Attack: Main Hand Attack
+data "DisplayName" "h4cd0c331g3118g4cb5g833bgf8480d10d707;1"
+data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Goon_Target_MainHandAttack_AoO,true,true,true);IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Goon_Target_MainHandAttack_AoO,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and WieldingWeapon('Melee')"
 
 // ==================================== Opportunity Attack: Off-Hand Attack (Melee)
 
@@ -62,7 +66,7 @@ type "InterruptData"
 using "Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Off-Hand Attack (Melee)
 data "DisplayName" "h89567371g5feag4f90g8a82g727325b08dce;1"
-data "Properties" "IF(HasLastAttackTriggered()):UseSpell(SWAP,Target_OffhandAttack,true,true,true);IF(not HasLastAttackTriggered()):UseSpell(Target_OffhandAttack,true,true,true)"
+data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Target_OffhandAttack,true,true,true)"
 data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and WieldingWeapon('Melee',true)"
 
 // ==================================== Opportunity Attack: Unarmed Strike
@@ -73,8 +77,8 @@ type "InterruptData"
 using "Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Unarmed Strike
 data "DisplayName" "h753f6667g03afg4f87g97c9ge006ca604e57;1"
-data "Properties" "IF(HasLastAttackTriggered()):UseSpell(SWAP,Target_UnarmedAttack,true,true,true);IF(not HasLastAttackTriggered()):UseSpell(Target_UnarmedAttack,true,true,true)"
-data "EnableCondition" "not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()"
+data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_UnarmedAttack,true,true,true);IF(not IsAttack()):UseSpell(Target_UnarmedAttack,true,true,true)"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and not (WieldingWeapon('Melee') or WieldingWeapon('Melee',true))"
 
 // ==================================== Opportunity Attack: Shove
 
@@ -83,5 +87,6 @@ type "InterruptData"
 using "Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Shove
 data "DisplayName" "hea8c6863gc545g42adg9eb5g484f9f7a1ca5;1"
-data "Properties" "IF(HasLastAttackTriggered()):UseSpell(SWAP,Target_Shove,true,true,true);IF(not HasLastAttackTriggered()):UseSpell(Target_Shove,true,true,true)"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not (not Player(context.Source) and Combat(context.Source) and Character() and not (Enemy() or HasStatus('SG_Unconscious'))) and not Tagged('CANT_SHOVE_THROW')"
+data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_Shove,true,true,true);IF(not IsAttack()):UseSpell(Target_Shove,true,true,true)"
 data "EnableCondition" "not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()"

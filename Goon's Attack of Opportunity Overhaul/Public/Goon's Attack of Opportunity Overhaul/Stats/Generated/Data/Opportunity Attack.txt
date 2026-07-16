@@ -27,25 +27,28 @@ using "AttackOfOpportunity"
 // data "Boosts" "UnlockInterrupt(Interrupt_AttackOfOpportunity)"
 data "Boosts" "UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Mainhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Offhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Unarmed);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Shove)"
 
-new entry "Interrupt_AttackOfOpportunity"
+new entry "Goon_Interrupt_AttackOfOpportunity"
 type "InterruptData"
-using "Interrupt_AttackOfOpportunity"
 // // Opportunity Attack
-// data "DisplayName" "ha47b8d48g1a33g43e3gb98agc3b2c22668b8;1"
+data "DisplayName" "ha47b8d48g1a33g43e3gb98agc3b2c22668b8;1"
 // // Attack an enemy moving out of your reach.
-// data "Description" "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1"
-// data "Icon" "PassiveFeature_AttackOfOpportunity"
-// data "InterruptContext" "OnLeaveAttackRange"
-// data "InterruptContextScope" "Self"
-// data "Container" "YesNoDecision"
+data "Description" "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1"
+data "Icon" "PassiveFeature_AttackOfOpportunity"
+data "InterruptContext" "OnLeaveAttackRange"
+data "InterruptContextScope" "Self"
+data "Container" "YesNoDecision"
 // data "Conditions" "IsAbleToReact(context.Observer) and not Self(context.Observer, context.Target) and Enemy() and not HasStatus('SANCTUARY',context.Source) and not WieldingWeapon('Ammunition', false, false, context.Source) and not (not Player(context.Source) and Tagged('AI_IGNORED_TARGET')  and not HasStatus('GNOLL_SUDDENRUSH')) and not HasStatus('SHOCKWAVE') and not (HasStatus('MOBILE_NO_AOO', context.Source) and HasStatus('MOBILE_NO_AOO_SOURCE', context.Target)) and not HasStatus('FLAMING_SPHERE_AURA') and not HasStatus('SNEAKING',context.Target) and not HasStatus('SG_Ignore_AOO',context.Target)  and not AnyEntityIsItem() and not HasSpellFlag(SpellFlags.IgnoreAoO, context.Target) and not (HasStatus('FANCYFOOTWORK', context.Source,context.Target) and HasStatus('FANCYFOOTWORK_OWNER', context.Target)) and (not HasStatus('PANACHE', context.Source)) or (HasStatus('PANACHE', context.Source) and HasStatus('PANACHE_OWNER', context.Target));"
-data "Conditions" "Goon_AttackOfOpportunityConditions()"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(context.Source, false)"
 // data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source)):UseAttack();IF(HasPassive('Sentinel_ZeroSpeed',context.Source)):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
-// data "Cost" "ReactionActionPoint:1"
+data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Goon_Target_MainHandAttack_AoO,true,true,true);IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Goon_Target_MainHandAttack_AoO,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
+data "Cost" "ReactionActionPoint:1"
 // data "InterruptDefaultValue" "Enabled"
+data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "not HasStatus('SG_Blinded')"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee())"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "EnableContext" "OnStatusApplied;OnStatusRemoved;OnEquip"
+// data "InterruptFlags" ""
 data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== Opportunity Attack: Main Hand Attack
@@ -53,40 +56,40 @@ data "InterruptFlags" "InterruptWhileInvisible"
 
 new entry "Goon_Interrupt_AttackOfOpportunity_Mainhand"
 type "InterruptData"
-using "Interrupt_AttackOfOpportunity"
+using "Goon_Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Main Hand Attack
 data "DisplayName" "h4cd0c331g3118g4cb5g833bgf8480d10d707;1"
-data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Goon_Target_MainHandAttack_AoO,true,true,true);IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Goon_Target_MainHandAttack_AoO,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and WieldingWeapon('Melee')"
 
 // ==================================== Opportunity Attack: Off-Hand Attack (Melee)
 
 new entry "Goon_Interrupt_AttackOfOpportunity_Offhand"
 type "InterruptData"
-using "Interrupt_AttackOfOpportunity"
+using "Goon_Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Off-Hand Attack (Melee)
 data "DisplayName" "h89567371g5feag4f90g8a82g727325b08dce;1"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(context.Source, true)"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Target_OffhandAttack,true,true,true)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and WieldingWeapon('Melee',true)"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee())"
 
 // ==================================== Opportunity Attack: Unarmed Strike
 // TODO: Without Goon's Common Action Overhaul (TBD) or Unlocked Unarmed Strike, add a requirement to actually be unarmed.
 
 new entry "Goon_Interrupt_AttackOfOpportunity_Unarmed"
 type "InterruptData"
-using "Interrupt_AttackOfOpportunity"
+using "Goon_Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Unarmed Strike
 data "DisplayName" "h753f6667g03afg4f87g97c9ge006ca604e57;1"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange()"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_UnarmedAttack,true,true,true);IF(not IsAttack()):UseSpell(Target_UnarmedAttack,true,true,true)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and not (WieldingWeapon('Melee') or WieldingWeapon('Melee',true))"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee())"
 
 // ==================================== Opportunity Attack: Shove
 
 new entry "Goon_Interrupt_AttackOfOpportunity_Shove"
 type "InterruptData"
-using "Interrupt_AttackOfOpportunity"
+using "Goon_Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Shove
 data "DisplayName" "hea8c6863gc545g42adg9eb5g484f9f7a1ca5;1"
-data "Conditions" "Goon_AttackOfOpportunityConditions() and not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not (not Player(context.Source) and Combat(context.Source) and Character() and not (Enemy() or HasStatus('SG_Unconscious'))) and not Tagged('CANT_SHOVE_THROW')"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange() and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not (not Player(context.Source) and Combat(context.Source) and Character() and not (Enemy() or HasStatus('SG_Unconscious'))) and not Tagged('CANT_SHOVE_THROW'))"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_Shove,true,true,true);IF(not IsAttack()):UseSpell(Target_Shove,true,true,true)"
-data "EnableCondition" "not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee())"

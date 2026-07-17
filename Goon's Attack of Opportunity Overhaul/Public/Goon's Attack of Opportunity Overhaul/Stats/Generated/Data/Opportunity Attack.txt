@@ -5,13 +5,11 @@
 // Changes: Player characters can now break Sanctuary with an Opportunity Attack.
 // ... and many more fixes...
 // Changes: There's no longer a free offhand attack, you can choose to take your Opportunity Attack with either your main hand or off hand instead.
-// TODO: Wildshape support.
 // TODO: Grapple variant.
 // TODO: Decide how best to provide weapon action interrupts. HasSpell osiris/SE would work, but was hoping for something in stats.
 // TODO: WieldingWeapon checks only for strict version. Otherwise allow weapon swapping. MCM scope creep or optional file?
 // TODO: Goon_CanIgnoreBlindness_X functions aren't really designed for EnableConditions.
 // Note: Swapping weapon sets don't trigger OnEquip status events, so WieldingWeapon checks in EnableCondition is ass.
-// Note: It appears that using a function with a ConditionResult inside it for AoO interrupt Conditions removes UI feedback. I'm guessing that the ConditionResult is attached to OnLeaveAttackRange?
 
 new entry "AttackOfOpportunity"
 type "PassiveData"

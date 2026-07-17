@@ -25,7 +25,7 @@ using "AttackOfOpportunity"
 // data "Icon" "PassiveFeature_AttackOfOpportunity"
 // data "Properties" "Highlighted"
 // data "Boosts" "UnlockInterrupt(Interrupt_AttackOfOpportunity)"
-data "Boosts" "UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Mainhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Offhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Unarmed);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Shove)"
+data "Boosts" "UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Mainhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Offhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_RangedMainhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_RangedOffhand);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Unarmed);UnlockInterrupt(Goon_Interrupt_AttackOfOpportunity_Shove)"
 
 new entry "Goon_Interrupt_AttackOfOpportunity"
 type "InterruptData"
@@ -70,6 +70,28 @@ data "DisplayName" "h89567371g5feag4f90g8a82g727325b08dce;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(context.Source, true)"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Target_OffhandAttack,true,true,true)"
 data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee())"
+
+// ==================================== Opportunity Attack: Ranged Attack
+
+new entry "Goon_Interrupt_AttackOfOpportunity_RangedMainhand"
+type "InterruptData"
+using "Goon_Interrupt_AttackOfOpportunity"
+// // Opportunity Attack: Ranged Attack
+data "DisplayName" "h298aa00egbf29g4ae8ga1d0gd31848bd639b;1"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(context.Source, false)"
+data "Properties" "IF(IsAttack()):UseSpell(SWAP,Goon_Projectile_MainHandAttack_AoO,true,true,true);IF(not IsAttack()):UseSpell(Goon_Projectile_MainHandAttack_AoO,true,true,true)"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged())"
+
+// ==================================== Opportunity Attack: Off-Hand Attack (Ranged)
+
+new entry "Goon_Interrupt_AttackOfOpportunity_RangedOffhand"
+type "InterruptData"
+using "Goon_Interrupt_AttackOfOpportunity"
+// // Opportunity Attack: Off-Hand Attack (Ranged)
+data "DisplayName" "h33c9ccafg488cg4a58gb8e4g3440d8f7f5ea;1"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(context.Source, true)"
+data "Properties" "IF(IsAttack()):UseSpell(SWAP,Projectile_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Projectile_OffhandAttack,true,true,true)"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged())"
 
 // ==================================== Opportunity Attack: Unarmed Strike
 // TODO: Without Goon's Common Action Overhaul (TBD) or Unlocked Unarmed Strike, add a requirement to actually be unarmed.

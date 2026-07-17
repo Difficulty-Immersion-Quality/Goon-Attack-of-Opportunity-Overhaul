@@ -11,6 +11,10 @@
 	<!-- Opportunity Attack - Variants -->
 	<!-- "Goon_Interrupt_AttackOfOpportunity_Offhand" -->
 	<content contentuid="h89567371g5feag4f90g8a82g727325b08dce" version="1">Opportunity Attack: Off-Hand Attack (Melee)</content>
+	<!-- "Goon_Interrupt_AttackOfOpportunity_RangedMainhand" -->
+	<content contentuid="h298aa00egbf29g4ae8ga1d0gd31848bd639b" version="1">Opportunity Attack: Ranged Attack</content>
+	<!-- "Goon_Interrupt_AttackOfOpportunity_RangedOffhand" -->
+	<content contentuid="h33c9ccafg488cg4a58gb8e4g3440d8f7f5ea" version="1">Opportunity Attack: Off-Hand Attack (Ranged)</content>
 	<!-- "Goon_Interrupt_AttackOfOpportunity_Unarmed" -->
 	<content contentuid="h753f6667g03afg4f87g97c9ge006ca604e57" version="1">Opportunity Attack: Unarmed Strike</content>
 	<!-- "Goon_Interrupt_AttackOfOpportunity_Shove" -->

@@ -64,9 +64,35 @@ using "Goon_Interrupt_AttackOfOpportunity_Offhand"
 // // Opportunity Attack: Off-Hand Attack (Melee)
 // data "DisplayName" "h89567371g5feag4f90g8a82g727325b08dce;1"
 // data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(context.Source, true)"
-data "Conditions" "(Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(context.Source, false) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(context.Target, false))"
+data "Conditions" "(Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(context.Source, true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(context.Target, true))"
 // data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Target_OffhandAttack,true,true,true)"
 // data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee())"
+
+// ==================================== Opportunity Attack: Ranged Attack
+
+new entry "Goon_Interrupt_AttackOfOpportunity_RangedMainhand"
+type "InterruptData"
+// using "Goon_Interrupt_AttackOfOpportunity"
+using "Goon_Interrupt_AttackOfOpportunity_RangedMainhand"
+// // Opportunity Attack: Ranged Attack
+// data "DisplayName" "h298aa00egbf29g4ae8ga1d0gd31848bd639b;1"
+// data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(context.Source, false)"
+data "Conditions" "(Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(context.Source, false) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(context.Source, false))"
+// data "Properties" "IF(IsAttack()):UseSpell(SWAP,Goon_Projectile_MainHandAttack_AoO,true,true,true);IF(not IsAttack()):UseSpell(Goon_Projectile_MainHandAttack_AoO,true,true,true)"
+// data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged())"
+
+// ==================================== Opportunity Attack: Off-Hand Attack (Ranged)
+
+new entry "Goon_Interrupt_AttackOfOpportunity_RangedOffhand"
+type "InterruptData"
+// using "Goon_Interrupt_AttackOfOpportunity"
+using "Goon_Interrupt_AttackOfOpportunity_RangedOffhand"
+// // Opportunity Attack: Off-Hand Attack (Ranged)
+// data "DisplayName" "h33c9ccafg488cg4a58gb8e4g3440d8f7f5ea;1"
+// data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(context.Source, true)"
+data "Conditions" "(Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(context.Source, true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(context.Source, true))"
+// data "Properties" "IF(IsAttack()):UseSpell(SWAP,Projectile_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Projectile_OffhandAttack,true,true,true)"
+// data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged())"
 
 // ==================================== Opportunity Attack: Unarmed Strike
 
@@ -86,7 +112,7 @@ data "Conditions" "(Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackR
 new entry "Goon_Interrupt_AttackOfOpportunity_Shove"
 type "InterruptData"
 // using "Goon_Interrupt_AttackOfOpportunity"
-using Goon_Interrupt_AttackOfOpportunity_Shove
+using "Goon_Interrupt_AttackOfOpportunity_Shove"
 // // Opportunity Attack: Shove
 // data "DisplayName" "hea8c6863gc545g42adg9eb5g484f9f7a1ca5;1"
 // data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange() and not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not (not Player(context.Source) and Combat(context.Source) and Character() and not (Enemy() or HasStatus('SG_Unconscious'))) and not Tagged('CANT_SHOVE_THROW')"

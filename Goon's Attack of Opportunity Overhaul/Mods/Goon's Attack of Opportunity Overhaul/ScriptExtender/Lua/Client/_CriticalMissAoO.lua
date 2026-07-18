@@ -8,18 +8,10 @@ local patchTargets = {
             Description = "h499b92e3gd78cg4436gb1f9g8ee659fc4e93;1",
         }
     },
-    Goon_Interrupt_AttackOfOpportunity = {
-        Fields = {
-            InterruptContext = { "OnLeaveAttackRange", "OnCastHit" },
-            Conditions = "((Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(false,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,false,context.Observer)",
-            -- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
-            Description = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
-        }
-    },
     Goon_Interrupt_AttackOfOpportunity_Mainhand = {
         Fields = {
             InterruptContext = { "OnLeaveAttackRange", "OnCastHit" },
-            Conditions = "((Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(false,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,false,context.Observer)",
+            Conditions = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,false,context.Observer)",
             -- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
             Description = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
         }
@@ -27,7 +19,7 @@ local patchTargets = {
     Goon_Interrupt_AttackOfOpportunity_Offhand = {
         Fields = {
             InterruptContext = { "OnLeaveAttackRange", "OnCastHit" },
-            Conditions = "((Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(true,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,true,context.Observer)",
+            Conditions = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,true,context.Observer)",
             -- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
             Description = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
         }
@@ -51,7 +43,7 @@ local patchTargets = {
     Goon_Interrupt_AttackOfOpportunity_Unarmed = {
         Fields = {
             InterruptContext = { "OnLeaveAttackRange", "OnCastHit" },
-            Conditions = "((Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(nil,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source)))",
+            Conditions = "(Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))",
             -- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
             Description = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
         }
@@ -59,7 +51,7 @@ local patchTargets = {
     Goon_Interrupt_AttackOfOpportunity_Shove = {
         Fields = {
             InterruptContext = { "OnLeaveAttackRange", "OnCastHit" },
-            Conditions = "((Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(nil,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
+            Conditions = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
             -- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
             Description = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
         }
@@ -67,7 +59,7 @@ local patchTargets = {
     Goon_Interrupt_AttackOfOpportunity_Grapple = {
         Fields = {
             InterruptContext = { "OnLeaveAttackRange", "OnCastHit" },
-            Conditions = "((Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(nil,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanGrappleTargetSize() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
+            Conditions = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanGrappleTargetSize() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
             -- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
             Description = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
         }

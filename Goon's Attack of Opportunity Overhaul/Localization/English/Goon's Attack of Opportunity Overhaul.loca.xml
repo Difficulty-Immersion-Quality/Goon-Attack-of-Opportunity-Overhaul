@@ -19,11 +19,22 @@
 	<content contentuid="h753f6667g03afg4f87g97c9ge006ca604e57" version="1">Opportunity Attack: Unarmed Strike</content>
 	<!-- "Goon_Interrupt_AttackOfOpportunity_Shove" -->
 	<content contentuid="hea8c6863gc545g42adg9eb5g484f9f7a1ca5" version="1">Opportunity Attack: Shove</content>
+	<!-- "Goon_Interrupt_AttackOfOpportunity_Grapple" -->
+	<content contentuid="h2d42c10egabbcg4f07g93dcg38d6e3b16a0f" version="1">Opportunity Attack: Grapple</content>
+
+	<!-- MCM -->
+	<!-- "Goon_CriticalMissAoO_Enabled" -->
+	<content contentuid="h7f211753gb370g4c76g9fb7gb862288382d9" version="1">Enable Attack of Opportunity on Critical Miss</content>
+	<content contentuid="h905c8dbdg5235g4793ga8bbg044006bfdebd" version="1">Toggle this feature on or off.&lt;br&gt;&lt;br&gt;Requires a game restart for changes to take effect.</content>
 
 	<!--  -->
 	<!-- "" -->
 	<content contentuid="" version="1"></content>
 
+	<!--  -->
+	<!-- "" -->
+	<content contentuid="" version="1"></content>
+	
 	<!--  -->
 	<!-- "" -->
 	<content contentuid="" version="1"></content>

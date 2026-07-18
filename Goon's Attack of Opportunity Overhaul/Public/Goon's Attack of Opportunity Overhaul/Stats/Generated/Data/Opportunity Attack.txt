@@ -112,3 +112,14 @@ data "DisplayName" "hea8c6863gc545g42adg9eb5g484f9f7a1ca5;1"
 data "Conditions" "(Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(nil,true)) and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not (not Player(context.Source) and Combat(context.Source) and Character() and not (Enemy() or HasStatus('SG_Unconscious'))) and not Tagged('CANT_SHOVE_THROW'))"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_Shove,true,true,true);IF(not IsAttack()):UseSpell(Target_Shove,true,true,true)"
 data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and not Goon_IsRestrictedPolymorphStatus()"
+
+// ==================================== Opportunity Attack: Grapple
+
+new entry "Goon_Interrupt_AttackOfOpportunity_Grapple"
+type "InterruptData"
+using "Goon_Interrupt_AttackOfOpportunity"
+// // Opportunity Attack: Grapple
+data "DisplayName" "h2d42c10egabbcg4f07g93dcg38d6e3b16a0f;1"
+data "Conditions" "(Goon_AttackOfOpportunityConditions() and Goon_InMeleeAttackRange(nil,true)) and (not Self() and CanGrappleTargetSize() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))"
+data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_Grapple,true,true,true);IF(not IsAttack()):UseSpell(Target_Grapple,true,true,true)"
+data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and HasFreeHand() and not Goon_IsRestrictedPolymorphStatus()"

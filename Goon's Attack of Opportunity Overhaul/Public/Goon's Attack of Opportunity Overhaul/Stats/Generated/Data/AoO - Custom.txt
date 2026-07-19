@@ -1,11 +1,13 @@
 // ==================================== Opportunity Attack ====================================
 // Changes: There's no longer a free offhand attack, you can choose to take your Opportunity Attack with either your main hand or off hand instead.
+// Changes: Additional variants - Ranged Attack, Off-Hand Attack (Ranged), Unarmed Strike, Shove, and Grapple (if  Dr. Kekyll's Grappling Framework is installed.)
+// Changes: (Toggleable in MCM) When an enemy rolls a Critical Miss on an attack against you, you can take an Opportunity Attack against them.
 // TODO: Decide how best to provide weapon action interrupts. HasSpell osiris/SE would work, but was hoping for something in stats.
-// TODO: WieldingWeapon checks only for strict version. Otherwise allow weapon swapping. MCM scope creep or optional file?
+// TODO: WieldingWeapon checks only for strict version. Otherwise allow weapon swapping.
 // TODO: OnLeaveAttackRange doesn't work unless actually wielding melee weapons, need to proxy it for ranged weapons and war caster.
 // TODO: Once per action cooldown so EB and shit doesn't trigger multiple times. HasLastAttackTriggered aint good enough apparently, must just be for single spells with multiple casts.
 // TODO: Without Goon's Common Action Overhaul (TBD) or Unlocked Unarmed Strike, add a requirement for opportunity Attack: Unarmed Strike to actually be unarmed.
-// TODO: Unique descriptions that link the assocatied action.
+// TODO: Unique descriptions that link the associated action.
 // TODO: Make ranged AoO a configuration option.
 // TODO: Custom range support for Ranged Weapons Rebalance and mods like it.
 // TODO: Fix the SE stuff so a game restart is no longer required for toggling Critical Miss functionality on/off.

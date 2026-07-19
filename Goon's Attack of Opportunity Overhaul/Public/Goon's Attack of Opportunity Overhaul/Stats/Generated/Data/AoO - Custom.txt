@@ -4,8 +4,11 @@
 // TODO: WieldingWeapon checks only for strict version. Otherwise allow weapon swapping. MCM scope creep or optional file?
 // TODO: OnLeaveAttackRange doesn't work unless actually wielding melee weapons, need to proxy it for ranged weapons and war caster.
 // TODO: Once per action cooldown so EB and shit doesn't trigger multiple times. HasLastAttackTriggered aint good enough apparently, must just be for single spells with multiple casts.
-// TODO: Without Goon's Common Action Overhaul (TBD) or Unlocked Unarmed Strike, add a requirement for pportunity Attack: Unarmed Strike to actually be unarmed.
+// TODO: Without Goon's Common Action Overhaul (TBD) or Unlocked Unarmed Strike, add a requirement for opportunity Attack: Unarmed Strike to actually be unarmed.
 // TODO: Unique descriptions that link the assocatied action.
+// TODO: Make ranged AoO a configuration option.
+// TODO: Custom range support for Ranged Weapons Rebalance and mods like it.
+// TODO: Fix the SE stuff so a game restart is no longer required for toggling Critical Miss functionality on/off.
 // Note: Swapping weapon sets don't trigger OnEquip status events, so WieldingWeapon checks in EnableCondition is ass.
 
 new entry "AttackOfOpportunity"

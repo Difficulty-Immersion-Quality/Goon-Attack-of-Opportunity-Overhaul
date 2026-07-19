@@ -1,15 +1,11 @@
 // ==================================== Opportunity Attack ====================================
-// Bug Fix: Gnoll's Sudden Rush is properly implemented in the conditions, preventing Opportunity Attacks against them.
-// Bug Fix: Can now be used by Invisible player characters.
-// Changes: Invisible creatures can be attacked if the entity reacting can see through invisibility.
-// Changes: Player characters can now break Sanctuary with an Opportunity Attack.
-// ... and many more fixes...
 // Changes: There's no longer a free offhand attack, you can choose to take your Opportunity Attack with either your main hand or off hand instead.
 // TODO: Decide how best to provide weapon action interrupts. HasSpell osiris/SE would work, but was hoping for something in stats.
 // TODO: WieldingWeapon checks only for strict version. Otherwise allow weapon swapping. MCM scope creep or optional file?
-// TODO: Goon_CanIgnoreBlindness_X functions aren't really designed for EnableConditions.
 // TODO: OnLeaveAttackRange doesn't work unless actually wielding melee weapons, need to proxy it for ranged weapons and war caster.
 // TODO: Once per action cooldown so EB and shit doesn't trigger multiple times. HasLastAttackTriggered aint good enough apparently, must just be for single spells with multiple casts.
+// TODO: Without Goon's Common Action Overhaul (TBD) or Unlocked Unarmed Strike, add a requirement for pportunity Attack: Unarmed Strike to actually be unarmed.
+// TODO: Unique descriptions that link the assocatied action.
 // Note: Swapping weapon sets don't trigger OnEquip status events, so WieldingWeapon checks in EnableCondition is ass.
 
 new entry "AttackOfOpportunity"
@@ -96,7 +92,6 @@ data "Properties" "IF(IsAttack()):UseSpell(SWAP,Projectile_OffhandAttack,true,tr
 data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged())"
 
 // ==================================== Opportunity Attack: Unarmed Strike
-// TODO: Without Goon's Common Action Overhaul (TBD) or Unlocked Unarmed Strike, add a requirement to actually be unarmed.
 
 new entry "Goon_Interrupt_AttackOfOpportunity_Unarmed"
 type "InterruptData"

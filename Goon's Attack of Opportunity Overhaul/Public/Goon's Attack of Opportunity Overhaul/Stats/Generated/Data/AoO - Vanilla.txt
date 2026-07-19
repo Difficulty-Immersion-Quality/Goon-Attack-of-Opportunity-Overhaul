@@ -1,0 +1,192 @@
+// ==================================== Opportunity Attack ====================================
+// Bug Fix: Many fixes to conditions.
+// Bug Fix: Can now be used by Invisible player characters.
+// Changes: Invisible creatures can be attacked if the entity reacting can see through invisibility.
+// Changes: Player characters can now break Sanctuary with an Opportunity Attack.
+
+new entry "Interrupt_AttackOfOpportunity"
+type "InterruptData"
+using "Interrupt_AttackOfOpportunity"
+// // Opportunity Attack
+// data "DisplayName" "ha47b8d48g1a33g43e3gb98agc3b2c22668b8;1"
+// // Attack an enemy moving out of your reach.
+// data "Description" "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1"
+// data "Icon" "PassiveFeature_AttackOfOpportunity"
+// data "InterruptContext" "OnLeaveAttackRange"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "IsAbleToReact(context.Observer) and not Self(context.Observer, context.Target) and Enemy() and not HasStatus('SANCTUARY',context.Source) and not WieldingWeapon('Ammunition', false, false, context.Source) and not (not Player(context.Source) and Tagged('AI_IGNORED_TARGET')  and not HasStatus('GNOLL_SUDDENRUSH')) and not HasStatus('SHOCKWAVE') and not (HasStatus('MOBILE_NO_AOO', context.Source) and HasStatus('MOBILE_NO_AOO_SOURCE', context.Target)) and not HasStatus('FLAMING_SPHERE_AURA') and not HasStatus('SNEAKING',context.Target) and not HasStatus('SG_Ignore_AOO',context.Target)  and not AnyEntityIsItem() and not HasSpellFlag(SpellFlags.IgnoreAoO, context.Target) and not (HasStatus('FANCYFOOTWORK', context.Source,context.Target) and HasStatus('FANCYFOOTWORK_OWNER', context.Target)) and (not HasStatus('PANACHE', context.Source)) or (HasStatus('PANACHE', context.Source) and HasStatus('PANACHE_OWNER', context.Target));"
+data "Conditions" "Goon_AttackOfOpportunityConditions()"
+// data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source)):UseAttack();IF(HasPassive('Sentinel_ZeroSpeed',context.Source)):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
+// data "Cost" "ReactionActionPoint:1"
+// data "InterruptDefaultValue" "Enabled"
+// data "EnableCondition" "not HasStatus('SG_Blinded')"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== War Caster: Opportunity Spell ====================================
+// Bug Fix: Passive now visible on the character sheet.
+
+new entry "WarCaster_OpportunitySpell"
+type "PassiveData"
+using "WarCaster_OpportunitySpell"
+// // War Caster: Opportunity Spell
+// data "DisplayName" "hd7ac736fg6e54g4383gb286g3a7b3014617a;2"
+// // You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;reaction&lt;/LSTag&gt; to cast &lt;LSTag Type="Spell" Tooltip="Target_ShockingGrasp"&gt;Shocking Grasp&lt;/LSTag&gt; at a target moving out of melee range.
+// data "Description" "h85846355g2916g44b3g9067g1e089037591f;3"
+// data "Icon" "PassiveFeature_WarCaster_OpportunitySpell"
+data "Properties" "Highlighted"
+// data "Boosts" "UnlockInterrupt(Interrupt_WarCaster)"
+
+// new entry "WarCaster_Bonuses"
+// type "PassiveData"
+// // War Caster: Concentration
+// data "DisplayName" "he4f3eee6gefd2g4105g9e26g544d3321271e;2"
+// // You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="SavingThrow"&gt;Saving Throws&lt;/LSTag&gt; to maintain &lt;LSTag Tooltip="Concentration"&gt;Concentration&lt;/LSTag&gt; on a spell.
+// data "Description" "h3ad8fdb2g2266g416cgacebg1fad0c63c959;5"
+// data "Icon" "PassiveFeature_WarCaster_Bonuses"
+// data "Properties" "Highlighted"
+// data "Boosts" "Advantage(Concentration)"
+
+new entry "Interrupt_WarCaster"
+type "InterruptData"
+using "Interrupt_WarCaster"
+// // War Caster: Opportunity Spell
+// data "DisplayName" "h2d5dacb3g8451g40f4g9c14g33df6c96eb6f;2"
+// // Cast &lt;LSTag Type="Spell" Tooltip="Target_ShockingGrasp"&gt;Shocking Grasp&lt;/LSTag&gt; at a creature moving out of range.
+// data "Description" "h2fc6ee3cg6be8g485ag809fgd66b52ba9e53;3"
+// // Cast &lt;LSTag Type="Spell" Tooltip="Target_ShockingGrasp"&gt;Shocking Grasp&lt;/LSTag&gt; at an enemy that moves out of your reach.
+data "Description" "hb1a5b720ga19fg4c9eg9d2dg940bc896c299;1"
+// data "Icon" "PassiveFeature_WarCaster_OpportunitySpell"
+// data "InterruptContext" "OnLeaveAttackRange"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "not HasSpellCastBlocked(context.Observer) and IsAbleToReact(context.Observer) and Self(context.Observer, context.Source) and not Self(context.Observer, context.Target) and Enemy() and not WieldingWeapon('Ammunition', false, false, context.Source) and not HasStatus('SG_Incapacitated', context.Source) and not HasStatus('SG_Unconscious', context.Source) and not (not Player(context.Source) and Tagged('AI_IGNORED_TARGET')  and not HasStatus('GNOLL_SUDDENRUSH')) and not HasStatus('SHOCKWAVE') and not (HasStatus('MOBILE_NO_AOO', context.Source) and HasStatus('MOBILE_NO_AOO_SOURCE', context.Target)) and not HasStatus('FLAMING_SPHERE_AURA') and not HasStatus('SNEAKING',context.Target) and not HasStatus('SG_Ignore_AOO',context.Target) and not AnyEntityIsItem()"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and not HasSpellCastBlocked(context.Observer)"
+// "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and not HasSpellCastBlocked(context.Observer)"
+// data "Properties" "UseSpell(Target_ShockingGrasp,true,true,true)"
+data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_ShockingGrasp,true,true,true);IF(not IsAttack()):UseSpell(Target_ShockingGrasp,true,true,true)"
+// data "Cost" "ReactionActionPoint:1"
+// data "Stack" "AttackOfOpportunity"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'}) or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness())"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== Polearm Master: Opportunity Attack ====================================
+
+// new entry "PolearmMaster_AttackOfOpportunity"
+// type "PassiveData"
+// // Polearm Master: Opportunity Attack
+// data "DisplayName" "he1aa8aacg6f82g46b8gaadcg2ede1872fa70;1"
+// // When wielding a glaive, halberd, quarterstaff, or spear, you can make an &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attack&lt;/LSTag&gt; when a target comes within range.
+// data "Description" "h5937777fgb71ag475bgb867gccf71cc07023;1"
+// // Prerequisite: Must be wielding a glaive, halberd, quarterstaff, or spear.
+// data "ExtraDescription" "ha88312bag12ebg46f1gb79cg3b65572427c8;1"
+// data "Icon" "PassiveFeature_PolearmMaster_AttackOfOpportunity"
+// data "Boosts" "UnlockInterrupt(Interrupt_PolearmMaster)"
+
+new entry "Interrupt_PolearmMaster"
+type "InterruptData"
+using "Interrupt_PolearmMaster"
+// // Polearm Master: Opportunity Attack
+// data "DisplayName" "hbc71d36cgf470g41d4gad2cg9876b1b8b06a;1"
+// // Make an &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attack&lt;/LSTag&gt; whenever a creature enters your reach.
+// data "Description" "hb9c219feg8ecdg403cgb3bbg793ca7feef70;3"
+// // Prerequisite: Must be wielding a glaive, halberd, quarterstaff, or spear.
+// data "ExtraDescription" "h92b56851gffa7g41f4ga3abg76330e742626;1"
+// data "Icon" "PassiveFeature_PolearmMaster_AttackOfOpportunity"
+// data "InterruptContext" "OnEnterAttackRange"
+// data "InterruptContextScope" "Self"
+// data "Container" "YesNoDecision"
+// data "Conditions" "Self(context.Source,context.Observer) and IsAbleToReact(context.Observer) and (HasWeaponProperty(WeaponProperties.Reach, GetActiveWeapon(context.Source)) or Tagged('WPN_STAVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_SPEAR', GetActiveWeapon(context.Source, true))) and Enemy() and not WieldingWeapon('Ammunition', false, false, context.Source) and not (not Player(context.Source) and Tagged('AI_IGNORED_TARGET')  and not HasStatus('GNOLL_SUDDENRUSH')) and not HasStatus('SHOCKWAVE') and not (HasStatus('MOBILE_NO_AOO', context.Source) and HasStatus('MOBILE_NO_AOO_SOURCE', context.Target)) and not HasStatus('FLAMING_SPHERE_AURA') and not HasStatus('SNEAKING',context.Target) and not HasStatus('SG_Ignore_AOO',context.Target) and not AnyEntityIsItem()"
+data "Conditions" "Goon_AttackOfOpportunityConditions() and (Tagged('WPN_GLAIVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_HALBERD', GetActiveWeapon(context.Source, true)) or Tagged('WPN_STAVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_SPEAR', GetActiveWeapon(context.Source, true)))"
+// data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source)):UseAttack();IF(HasPassive('Sentinel_ZeroSpeed',context.Source)):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true)"
+data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Goon_Target_MainHandAttack_AoO,true,true,true);IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Goon_Target_MainHandAttack_AoO,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Target_Sentinel_AttackOfOpportunity,true,true,true)"
+// data "Cost" "ReactionActionPoint:1"
+// data "Stack" "AttackOfOpportunity"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'}) or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness())"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+// ==================================== Sentinel ====================================
+// data "StatsFunctorContext" "OnAttack"
+// data "Conditions" "Goon_IsAttackOfOpportunity()"
+// data "StatsFunctors" "ApplyStatus(SENTINEL,100,1)"
+
+// new entry "Sentinel_ZeroSpeed"
+// type "PassiveData"
+// // Sentinel: Snare
+// data "DisplayName" "h5d1804e6g83a8g4cefga5b0g89437047cae3;4"
+// // When you hit a creature with an &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attack&lt;/LSTag&gt;, it can no longer move for the rest of its turn.
+// data "Description" "h78aadfb6g3438g4bdcg948fg08900665571d;5"
+// data "Icon" "PassiveFeature_Sentinel_ZeroSpeed"
+// data "Properties" "Highlighted"
+
+// new entry "Sentinel_Attack"
+// type "PassiveData"
+// // Sentinel: Vengeance
+// data "DisplayName" "h17b7fde5gdddbg450cg9f74gdd11aca584b1;4"
+// // When an enemy within melee range attacks an ally, you can use a reaction to make a weapon attack against that enemy.
+// data "Description" "h09141465g4771g4c38g8e53g1fbc3b0153e1;4"
+// data "Icon" "PassiveFeature_Sentinel_Attack"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockInterrupt(Interrupt_Sentinel)"
+
+new entry "Interrupt_Sentinel"
+type "InterruptData"
+using "Interrupt_Sentinel"
+// // Sentinel
+// data "DisplayName" "h81cd2db2gb571g4397g806dg178adf362411;1"
+// // When an ally is attacked by a nearby creature, you may strike the attacker.
+// data "Description" "hcecec268gab67g410cg88d4g7d2241a98bb2;1"
+// data "Icon" "PassiveFeature_Sentinel_Attack"
+// data "InterruptContext" "OnCastHit"
+// data "InterruptContextScope" "Nearby"
+// data "Container" "YesNoDecision"
+// data "Conditions" "not Self(context.Target,context.Observer) and not Self(context.Source,context.Observer) and Ally(context.Target, context.Observer) and Enemy(context.Source, context.Observer) and not HasPassive('Sentinel_Attack',context.Target) and IsAbleToReact(context.Observer) and IsMeleeAttack() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and not AnyEntityIsItem() and HasLastAttackTriggered()"
+data "Conditions" "Goon_BasicHarmfulInterruptConditions() and not Self(context.Target,context.Observer) and not Self(context.Source,context.Observer) and Ally(context.Target, context.Observer) and Enemy(context.Source, context.Observer) and not HasPassive('Sentinel_Attack',context.Target) and IsAbleToReact(context.Observer) and IsMeleeAttack() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and not AnyEntityIsItem() and HasLastAttackTriggered()"
+// data "Properties" "UseAttack(OBSERVER_SOURCE)"
+// data "Cost" "ReactionActionPoint:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'},{},{'WILDSHAPE_MYRMIDON_AIR_PLAYER','WILDSHAPE_MYRMIDON_AIR_PLAYER_12','WILDSHAPE_MYRMIDON_FIRE_PLAYER','WILDSHAPE_MYRMIDON_FIRE_PLAYER_12','WILDSHAPE_MYRMIDON_WATER_PLAYER','WILDSHAPE_MYRMIDON_WATER_PLAYER_12',}) or Tagged('MINDFLAYER') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
+data "EnableCondition" "((not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus())) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness())"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"
+
+// new entry "Sentinel_OpportunityAdvantage"
+// type "PassiveData"
+// // Sentinel: Opportunity Advantage
+// data "DisplayName" "ha6b0d656g6b78g4ddeg9ff6gd74ce7de49eb;2"
+// // You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt;.
+// data "Description" "h85d32fdbg67c2g43c9ga4e4gd10db070a9a1;3"
+// data "Icon" "PassiveFeature_Sentinel_OpportunityAdvantage"
+// data "Properties" "Highlighted"
+// data "Boosts" "IF(SpellId('Target_Sentinel_AttackOfOpportunity')):Advantage(AttackRoll)"
+
+// new entry "Target_Sentinel_AttackOfOpportunity"
+// type "SpellData"
+// data "SpellType" "Target"
+// using "Target_MainHandAttack"
+// data "SpellSuccess" "DealDamage(MainMeleeWeapon, MainMeleeWeaponDamageType);ExecuteWeaponFunctors(MainHand);ApplyStatus(SENTINEL,100,1)"
+// data "Icon" "PassiveFeature_Sentinel_Attack"
+// data "TooltipStatusApply" "ApplyStatus(SENTINEL,100,1)"
+
+// new entry "SENTINEL"
+// type "StatusData"
+// data "StatusType" "BOOST"
+// // Sentinel Foe
+// data "DisplayName" "h08cbf9f9gf641g4a53gb074g16cc0f469658;2"
+// // Can't move. Restrained by an &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attack&lt;/LSTag&gt; from a Sentinel.
+// data "Description" "h2beeba0bg1e95g411fg9077g217d1f9a9a0a;2"
+// data "Icon" "PassiveFeature_Sentinel_ZeroSpeed"
+// data "StillAnimationType" "Snared"
+// data "StillAnimationPriority" "Snared"
+// data "StackId" "SENTINEL"
+// data "TickType" "EndTurn"
+// data "Boosts" "ActionResourceBlock(Movement)"
+// data "StatusPropertyFlags" "DisableCombatlog;DisableOverhead"
+// data "StatusGroups" "SG_RemoveOnRespec"

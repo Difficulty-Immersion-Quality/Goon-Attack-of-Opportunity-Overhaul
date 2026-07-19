@@ -3,12 +3,17 @@
 	<!-- Opportunity Attack -->
 	<!-- "AttackOfOpportunity" -->
 	<content contentuid="h499b92e3gd78cg4436gb1f9g8ee659fc4e93" version="1">Automatically attack an enemy when they move out of your reach or roll a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.</content>
-	
-	<!-- "Interrupt_AttackOfOpportunity" -->
-	<content contentuid="h4cd0c331g3118g4cb5g833bgf8480d10d707" version="1">Opportunity Attack: Main Hand Attack</content>
+	<!-- "Goon_Interrupt_AttackOfOpportunity" -->
 	<content contentuid="hc3131359g5a0ag4c0agbe13gb6b30826c824" version="1">Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.</content>
+	
+	<!-- Opportunity Attack - Vanilla Variants -->
+	<!-- "Interrupt_WarCaster" -->
+	<content contentuid="hb1a5b720ga19fg4c9eg9d2dg940bc896c299" version="1">Cast &lt;LSTag Type="Spell" Tooltip="Target_ShockingGrasp"&gt;Shocking Grasp&lt;/LSTag&gt; at an enemy that moves out of your reach.</content>
+	<content contentuid="had3e80e7g81f6g4fedg9938g5dd0a0f4be2e" version="1">Cast &lt;LSTag Type="Spell" Tooltip="Target_ShockingGrasp"&gt;Shocking Grasp&lt;/LSTag&gt; enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.</content>
 
-	<!-- Opportunity Attack - Variants -->
+	<!-- Opportunity Attack - Custom Variants -->
+	<!-- "Goon_Interrupt_AttackOfOpportunity_Mainhand" -->
+	<content contentuid="h4cd0c331g3118g4cb5g833bgf8480d10d707" version="1">Opportunity Attack: Main Hand Attack</content>
 	<!-- "Goon_Interrupt_AttackOfOpportunity_Offhand" -->
 	<content contentuid="h89567371g5feag4f90g8a82g727325b08dce" version="1">Opportunity Attack: Off-Hand Attack (Melee)</content>
 	<!-- "Goon_Interrupt_AttackOfOpportunity_RangedMainhand" -->
@@ -27,14 +32,6 @@
 	<content contentuid="h7f211753gb370g4c76g9fb7gb862288382d9" version="1">Enable Attack of Opportunity on Critical Miss</content>
 	<content contentuid="h905c8dbdg5235g4793ga8bbg044006bfdebd" version="1">Toggle this feature on or off.&lt;br&gt;&lt;br&gt;Requires a game restart for changes to take effect.</content>
 
-	<!--  -->
-	<!-- "" -->
-	<content contentuid="" version="1"></content>
-
-	<!--  -->
-	<!-- "" -->
-	<content contentuid="" version="1"></content>
-	
 	<!--  -->
 	<!-- "" -->
 	<content contentuid="" version="1"></content>

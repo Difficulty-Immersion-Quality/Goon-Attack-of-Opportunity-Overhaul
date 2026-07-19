@@ -9,6 +9,7 @@
 // TODO: WieldingWeapon checks only for strict version. Otherwise allow weapon swapping. MCM scope creep or optional file?
 // TODO: Goon_CanIgnoreBlindness_X functions aren't really designed for EnableConditions.
 // TODO: OnLeaveAttackRange doesn't work unless actually wielding melee weapons, need to proxy it for ranged weapons and war caster.
+// TODO: Once per action cooldown so EB and shit doesn't trigger multiple times. HasLastAttackTriggered aint good enough apparently, must just be for single spells with multiple casts.
 // Note: Swapping weapon sets don't trigger OnEquip status events, so WieldingWeapon checks in EnableCondition is ass.
 
 new entry "AttackOfOpportunity"

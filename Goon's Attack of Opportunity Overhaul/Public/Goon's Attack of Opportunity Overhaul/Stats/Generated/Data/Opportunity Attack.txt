@@ -42,8 +42,7 @@ data "Stack" "AttackOfOpportunity"
 // data "InterruptDefaultValue" "Enabled"
 data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "not HasStatus('SG_Blinded')"
-// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
-data "EnableContext" "OnStatusApplied;OnStatusRemoved;OnEquip"
+data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 // data "InterruptFlags" ""
 data "InterruptFlags" "InterruptWhileInvisible"
 
@@ -58,7 +57,7 @@ data "DisplayName" "h4cd0c331g3118g4cb5g833bgf8480d10d707;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_HasWeaponTypeInSlot(false,false,context.Observer)"
 // "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,false,context.Observer)"
 data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Goon_Target_MainHandAttack_AoO,true,true,true);IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Goon_Target_MainHandAttack_AoO,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and (not Goon_IsRestrictedPolymorphStatus() or Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or (Goon_IsUnrestrictedPolymorphStatus() or Goon_IsMyrmidonDruidPolymorph())) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness())"
 
 // ==================================== Opportunity Attack: Off-Hand Attack (Melee)
 
@@ -70,7 +69,7 @@ data "DisplayName" "h89567371g5feag4f90g8a82g727325b08dce;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_HasWeaponTypeInSlot(false,true,context.Observer)"
 // "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,true,context.Observer)"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Target_OffhandAttack,true,true,true)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and (not Goon_IsRestrictedPolymorphStatus() or Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or (Goon_IsUnrestrictedPolymorphStatus() or Goon_IsMyrmidonDruidPolymorph())) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness())"
 
 // ==================================== Opportunity Attack: Ranged Attack
 
@@ -82,7 +81,7 @@ data "DisplayName" "h298aa00egbf29g4ae8ga1d0gd31848bd639b;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true) and Goon_HasWeaponTypeInSlot(true,false,context.Observer)"
 // "((Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(true,false,context.Observer)"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Goon_Projectile_MainHandAttack_AoO,true,true,true);IF(not IsAttack()):UseSpell(Goon_Projectile_MainHandAttack_AoO,true,true,true)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged()) and (not Goon_IsRestrictedPolymorphStatus() or Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged())"
 
 // ==================================== Opportunity Attack: Off-Hand Attack (Ranged)
 
@@ -94,7 +93,7 @@ data "DisplayName" "h33c9ccafg488cg4a58gb8e4g3440d8f7f5ea;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true) and Goon_HasWeaponTypeInSlot(true,true,context.Observer)"
 // "((Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(true,true,context.Observer)"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Projectile_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Projectile_OffhandAttack,true,true,true)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged()) and (not Goon_IsRestrictedPolymorphStatus() or Goon_IsMyrmidonDruidPolymorph())"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Ranged())"
 
 // ==================================== Opportunity Attack: Unarmed Strike
 // TODO: Without Goon's Common Action Overhaul (TBD) or Unlocked Unarmed Strike, add a requirement to actually be unarmed.
@@ -107,7 +106,7 @@ data "DisplayName" "h753f6667g03afg4f87g97c9ge006ca604e57;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions()"
 // "(Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))"
 data "Properties" "IF(not Goon_IsRestrictedPolymorphStatus(context.Target) and IsAttack()):UseSpell(SWAP,Target_UnarmedAttack,true,true,true);IF(not Goon_IsRestrictedPolymorphStatus(context.Source) and not IsAttack()):UseSpell(Target_UnarmedAttack,true,true,true);IF(Goon_IsRestrictedPolymorphStatus(context.Target) and IsAttack()):UseAttack(SWAP);IF(Goon_IsRestrictedPolymorphStatus(context.Source) and not IsAttack()):UseAttack()"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and Goon_IsNonHostilePolymorphStatus()"
+data "EnableCondition" "Goon_IsNonHostilePolymorphStatus() and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness())"
 
 // ==================================== Opportunity Attack: Shove
 
@@ -119,7 +118,7 @@ data "DisplayName" "hea8c6863gc545g42adg9eb5g484f9f7a1ca5;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions() and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not (not Player(context.Source) and Combat(context.Source) and Character() and not (Enemy() or HasStatus('SG_Unconscious'))) and not Tagged('CANT_SHOVE_THROW'))"
 // "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_Shove,true,true,true);IF(not IsAttack()):UseSpell(Target_Shove,true,true,true)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and not Goon_IsRestrictedPolymorphStatus()"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness())"
 
 // ==================================== Opportunity Attack: Grapple
 
@@ -131,4 +130,4 @@ data "DisplayName" "h2d42c10egabbcg4f07g93dcg38d6e3b16a0f;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions() and (not Self() and CanGrappleTargetSize() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))"
 // "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanGrappleTargetSize() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_Grapple,true,true,true);IF(not IsAttack()):UseSpell(Target_Grapple,true,true,true)"
-data "EnableCondition" "(not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness_Melee()) and HasFreeHand() and not Goon_IsRestrictedPolymorphStatus()"
+data "EnableCondition" "(not HasStatus('SG_Polymorph') or Goon_IsUnrestrictedPolymorphStatus()) and (not HasStatus('SG_Blinded') or Goon_CanIgnoreBlindness()) and HasFreeHand()"

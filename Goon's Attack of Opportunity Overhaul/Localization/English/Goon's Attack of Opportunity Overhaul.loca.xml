@@ -30,7 +30,10 @@
 	<!-- MCM -->
 	<!-- "Goon_CriticalMissAoO_Enabled" -->
 	<content contentuid="h7f211753gb370g4c76g9fb7gb862288382d9" version="1">Enable Attack of Opportunity on Critical Miss</content>
-	<content contentuid="h905c8dbdg5235g4793ga8bbg044006bfdebd" version="1">Toggle this feature on or off.&lt;br&gt;&lt;br&gt;Requires a game restart for changes to take effect.</content>
+	<content contentuid="h905c8dbdg5235g4793ga8bbg044006bfdebd" version="1">Toggle this feature on or off.</content>
+	<!-- "Goon_CriticalMissAoO_Debug" -->
+	<content contentuid="hfd4d9bfag4893g4438gb5f9g635080c63763" version="1">Debug</content>
+	<content contentuid="he1028ee3g062dg410cgacc9g08f27e62ff7f" version="1">Enable debug logging.</content>
 
 	<!--  -->
 	<!-- "" -->

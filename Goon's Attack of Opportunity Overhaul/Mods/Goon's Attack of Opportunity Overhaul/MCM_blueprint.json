@@ -10,7 +10,7 @@
                     "Name": "Enable Attack of Opportunity on Critical Miss",
                     "Type": "checkbox",
                     "Default": true,
-                    "Description": "Toggle this feature on or off.&lt;br&gt;&lt;br&gt;Requires a game restart for changes to take effect.",
+                    "Description": "Toggle this feature on or off.",
                     "Handles": {
                         "NameHandle": "h7f211753gb370g4c76g9fb7gb862288382d9",
                         "DescriptionHandle": "h905c8dbdg5235g4793ga8bbg044006bfdebd"
@@ -23,8 +23,8 @@
                     "Default": false,
                     "Description": "Enable debug logging.",
                     "Handles": {
-                        "NameHandle": "hbe4c7305g3914g448cga4a7g10fb5d57ee47",
-                        "DescriptionHandle": "h5ba4207dgd7f3g4ba0gb04cg66185d5068a3"
+                        "NameHandle": "hfd4d9bfag4893g4438gb5f9g635080c63763",
+                        "DescriptionHandle": "he1028ee3g062dg410cgacc9g08f27e62ff7f"
                     }
                 }
             ]

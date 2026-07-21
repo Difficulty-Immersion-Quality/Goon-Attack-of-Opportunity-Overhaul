@@ -66,8 +66,8 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "(Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,false,context.Observer)",
-				off = "Goon_AttackOfOpportunityConditions() and Goon_HasWeaponTypeInSlot(false,false,context.Observer)",
+				on = "Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))",
+				off = "Goon_AttackOfOpportunityConditions()",
 			},
 		},
 	},
@@ -85,8 +85,8 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "(Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,true,context.Observer)",
-				off = "Goon_AttackOfOpportunityConditions() and Goon_HasWeaponTypeInSlot(false,true,context.Observer)",
+				on = "Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(true,true,context.Source))",
+				off = "Goon_AttackOfOpportunityConditions()",
 			},
 		},
 	},
@@ -104,8 +104,8 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true)) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(true,false,context.Observer)",
-				off = "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true) and Goon_HasWeaponTypeInSlot(true,false,context.Observer)",
+				on = "(Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true)) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(false,true,context.Source))",
+				off = "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true)",
 			},
 		},
 	},
@@ -123,8 +123,8 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true)) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(true,true,context.Observer)",
-				off = "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true) and Goon_HasWeaponTypeInSlot(true,true,context.Observer)",
+				on = "(Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true)) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(true,true,context.Source))",
+				off = "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true)",
 			},
 		},
 	},

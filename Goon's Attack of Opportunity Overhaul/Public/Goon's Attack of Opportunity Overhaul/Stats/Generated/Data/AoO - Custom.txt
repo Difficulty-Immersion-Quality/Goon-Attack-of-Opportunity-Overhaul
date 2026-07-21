@@ -10,7 +10,6 @@
 // TODO: Unique descriptions that link the associated action.
 // TODO: Make ranged AoO a configuration option.
 // TODO: Custom range support for Ranged Weapons Rebalance and mods like it.
-// TODO: Fix the SE stuff so a game restart is no longer required for toggling Critical Miss functionality on/off.
 // TODO: There's more variance to account for with AttackSpellOverride and the like. NPCs and restricted polymorphs have access to regular AoO until I can make things more robust. -- and Unarmed(context.Observer)
 // Note: Swapping weapon sets don't trigger OnEquip status events, so WieldingWeapon checks in EnableCondition is ass.
 

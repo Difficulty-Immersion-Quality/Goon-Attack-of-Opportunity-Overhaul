@@ -15,6 +15,17 @@
                         "NameHandle": "h7f211753gb370g4c76g9fb7gb862288382d9",
                         "DescriptionHandle": "h905c8dbdg5235g4793ga8bbg044006bfdebd"
                     }
+                },
+                {
+                    "Id": "Goon_CriticalMissAoO_Debug",
+                    "Name": "Debug",
+                    "Type": "checkbox",
+                    "Default": false,
+                    "Description": "Enable debug logging.",
+                    "Handles": {
+                        "NameHandle": "hbe4c7305g3914g448cga4a7g10fb5d57ee47",
+                        "DescriptionHandle": "h5ba4207dgd7f3g4ba0gb04cg66185d5068a3"
+                    }
                 }
             ]
         }

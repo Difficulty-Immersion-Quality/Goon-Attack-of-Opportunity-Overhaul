@@ -3,6 +3,7 @@
 -- Needs a pass to double check
 
 local PatchTargets = {
+	-- Passive
 	AttackOfOpportunity = {
 		Fields = {
 			Description = {
@@ -13,11 +14,32 @@ local PatchTargets = {
 		},
 	},
 
+	-- Interrupts
+	Goon_Interrupt_AttackOfOpportunity = {
+		Fields = {
+			Description = {
+				-- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
+				on = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
+				-- Attack an enemy moving out of your reach.
+				off = "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1",
+			},
+			InterruptContext = {
+				on = { "OnLeaveAttackRange", "OnCastHit" },
+				off = { "OnLeaveAttackRange" },
+			},
+			Conditions = {
+				on = "Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))",
+				off = "Goon_AttackOfOpportunityConditions()",
+			},
+		},
+	},
+
 	Interrupt_WarCaster = {
 		Fields = {
 			Description = {
 				-- Cast &lt;LSTag Type="Spell" Tooltip="Target_ShockingGrasp"&gt;Shocking Grasp&lt;/LSTag&gt; enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
 				on = "had3e80e7g81f6g4fedg9938g5dd0a0f4be2e;1",
+				-- Cast &lt;LSTag Type="Spell" Tooltip="Target_ShockingGrasp"&gt;Shocking Grasp&lt;/LSTag&gt; at an enemy that moves out of your reach.
 				off = "hb1a5b720ga19fg4c9eg9d2dg940bc896c299;1",
 			},
 			InterruptContext = {
@@ -25,7 +47,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and not HasSpellCastBlocked(context.Observer)",
+				on = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and not HasSpellCastBlocked(context.Observer)",
 				off = "Goon_AttackOfOpportunityConditions() and not HasSpellCastBlocked(context.Observer)",
 			},
 		},
@@ -36,6 +58,7 @@ local PatchTargets = {
 			Description = {
 				-- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
 				on = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
+				-- Attack an enemy moving out of your reach.
 				off = "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1",
 			},
 			InterruptContext = {
@@ -54,6 +77,7 @@ local PatchTargets = {
 			Description = {
 				-- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
 				on = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
+				-- Attack an enemy moving out of your reach.
 				off = "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1",
 			},
 			InterruptContext = {
@@ -72,6 +96,7 @@ local PatchTargets = {
 			Description = {
 				-- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
 				on = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
+				-- Attack an enemy moving out of your reach.
 				off = "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1",
 			},
 			InterruptContext = {
@@ -90,6 +115,7 @@ local PatchTargets = {
 			Description = {
 				-- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
 				on = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
+				-- Attack an enemy moving out of your reach.
 				off = "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1",
 			},
 			InterruptContext = {
@@ -108,6 +134,7 @@ local PatchTargets = {
 			Description = {
 				-- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
 				on = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
+				-- Attack an enemy moving out of your reach.
 				off = "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1",
 			},
 			InterruptContext = {
@@ -126,6 +153,7 @@ local PatchTargets = {
 			Description = {
 				-- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
 				on = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
+				-- Attack an enemy moving out of your reach.
 				off = "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1",
 			},
 			InterruptContext = {
@@ -144,6 +172,7 @@ local PatchTargets = {
 			Description = {
 				-- Attack an enemy that moves out of your reach or rolls a &lt;LSTag Tooltip="CriticalMiss"&gt;Critical Miss&lt;/LSTag&gt; when attacking you.
 				on = "hc3131359g5a0ag4c0agbe13gb6b30826c824;1",
+				-- Attack an enemy moving out of your reach.
 				off = "h3e87bdfcg0860g468eg9a8eg1bd073914fee;1",
 			},
 			InterruptContext = {

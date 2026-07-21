@@ -43,7 +43,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,false,context.Observer)",
+				on = "(Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,false,context.Observer)",
 				off = "Goon_AttackOfOpportunityConditions() and Goon_HasWeaponTypeInSlot(false,false,context.Observer)",
 			},
 		},
@@ -61,7 +61,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,true,context.Observer)",
+				on = "(Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(false,true,context.Observer)",
 				off = "Goon_AttackOfOpportunityConditions() and Goon_HasWeaponTypeInSlot(false,true,context.Observer)",
 			},
 		},
@@ -79,7 +79,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(true,false,context.Observer)",
+				on = "((Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true)) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(false,true,context.Source))) and Goon_HasWeaponTypeInSlot(true,false,context.Observer)",
 				off = "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(false,true) and Goon_HasWeaponTypeInSlot(true,false,context.Observer)",
 			},
 		},
@@ -97,7 +97,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true) and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(true,true,context.Observer)",
+				on = "((Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true)) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InRangedAttackRange(true,true,context.Source))) and Goon_HasWeaponTypeInSlot(true,true,context.Observer)",
 				off = "Goon_AttackOfOpportunityConditions() and Goon_InRangedAttackRange(true,true) and Goon_HasWeaponTypeInSlot(true,true,context.Observer)",
 			},
 		},
@@ -115,7 +115,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "(Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))",
+				on = "Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))",
 				off = "Goon_AttackOfOpportunityConditions()",
 			},
 		},
@@ -133,7 +133,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
+				on = "(Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
 				off = "Goon_AttackOfOpportunityConditions() and (not Self() and CanShoveWeight() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not (not Player(context.Source) and Combat(context.Source) and Character() and not (Enemy() or HasStatus('SG_Unconscious'))) and not Tagged('CANT_SHOVE_THROW'))",
 			},
 		},
@@ -151,7 +151,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "((Goon_AttackOfOpportunityConditions() and not IsAttack()) or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanGrappleTargetSize() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
+				on = "(Goon_AttackOfOpportunityConditions() or (Goon_AttackOfOpportunityConditions_CriticalMiss() and Goon_InMeleeAttackRange(nil,true,context.Source))) and (not Self() and CanGrappleTargetSize() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
 				off = "Goon_AttackOfOpportunityConditions() and (not Self() and CanGrappleTargetSize() and IsMovable() and not Grounded() and not Tagged('GASEOUS_FORM') and not HasStatus('SG_Unconscious') and not Tagged('CANT_SHOVE_THROW'))",
 			},
 		},

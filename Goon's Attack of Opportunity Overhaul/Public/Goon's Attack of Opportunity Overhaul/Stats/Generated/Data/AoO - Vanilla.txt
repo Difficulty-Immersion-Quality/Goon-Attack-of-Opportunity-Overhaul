@@ -21,6 +21,7 @@ data "Conditions" "Goon_AttackOfOpportunityConditions(false)"
 // data "Cost" "ReactionActionPoint:1"
 // data "InterruptDefaultValue" "Enabled"
 // data "EnableCondition" "not HasStatus('SG_Blinded')"
+data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions(true)"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
 
@@ -113,9 +114,12 @@ data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions()"
 data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== Sentinel ====================================
+// Changes: Restrictions on what attacks you can interrupt loosened to be pseudo 5e RAW; you can now interrupt all attackers except for allies, instead of strictly enemies attacking allies.
+
 // data "StatsFunctorContext" "OnAttack"
 // data "Conditions" "Goon_IsAttackOfOpportunity()"
 // data "StatsFunctors" "ApplyStatus(SENTINEL,100,1)"
+// ...
 
 // new entry "Sentinel_ZeroSpeed"
 // type "PassiveData"
@@ -147,8 +151,10 @@ using "Interrupt_Sentinel"
 // data "InterruptContext" "OnCastHit"
 // data "InterruptContextScope" "Nearby"
 // data "Container" "YesNoDecision"
-// data "Conditions" "not Self(context.Target,context.Observer) and not Self(context.Source,context.Observer) and Ally(context.Target, context.Observer) and Enemy(context.Source, context.Observer) and not HasPassive('Sentinel_Attack',context.Target) and IsAbleToReact(context.Observer) and IsMeleeAttack() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and not AnyEntityIsItem() and HasLastAttackTriggered()" // TODO
-// data "Properties" "UseAttack(OBSERVER_SOURCE)" // TODO
+// data "Conditions" "not Self(context.Target,context.Observer) and not Self(context.Source,context.Observer) and Ally(context.Target, context.Observer) and Enemy(context.Source, context.Observer) and not HasPassive('Sentinel_Attack',context.Target) and IsAbleToReact(context.Observer) and IsMeleeAttack() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and not AnyEntityIsItem() and HasLastAttackTriggered()"
+data "Conditions" "Goon_BasicHarmfulInterruptConditions() and Goon_InAttackRange(false,false,false,true) and not Self(context.Target,context.Observer) and not Self(context.Source,context.Observer) and not Ally(context.Source, context.Observer) and not HasPassive('Sentinel_Attack',context.Target) and IsMeleeAttack() and HasLastAttackTriggered()"
+// data "Properties" "UseAttack(OBSERVER_SOURCE)"
+data "Properties" "UseSpell(OBSERVER_SOURCE,Goon_Target_MainHandAttack_Generic,true,true,true)"
 // data "Cost" "ReactionActionPoint:1"
 // data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'},{},{'WILDSHAPE_MYRMIDON_AIR_PLAYER','WILDSHAPE_MYRMIDON_AIR_PLAYER_12','WILDSHAPE_MYRMIDON_FIRE_PLAYER','WILDSHAPE_MYRMIDON_FIRE_PLAYER_12','WILDSHAPE_MYRMIDON_WATER_PLAYER','WILDSHAPE_MYRMIDON_WATER_PLAYER_12',}) or Tagged('MINDFLAYER') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
@@ -189,3 +195,41 @@ data "InterruptFlags" "InterruptWhileInvisible"
 // data "Boosts" "ActionResourceBlock(Movement)"
 // data "StatusPropertyFlags" "DisableCombatlog;DisableOverhead"
 // data "StatusGroups" "SG_RemoveOnRespec"
+
+// =================================== Mage Slayer: Attack Caster ===================================
+// Bug Fix: Added checks for waiting on HasLastAttackTriggered if the spell is an attack, to prevent edge cases where the interrupt cuts a spell cast short.
+// Changes: Interrupt is no longer prevented by the caster being uninterruptable, per 5e RAW.
+
+// new entry "MageSlayer_AttackCaster"
+// type "PassiveData"
+// // Mage Slayer: Attack Caster
+// data "DisplayName" "h3b348abcg1ccbg4ac2gadcbgf97694100813;2"
+// // You can use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;reaction&lt;/LSTag&gt; to make an attack against an enemy after it casts a spell within [1] of you.
+// data "Description" "ha36dcc22gd0c0g498fga346ged1bebb7c456;3"
+// data "DescriptionParams" "Distance(1.5)"
+// data "TooltipUseCosts" "ReactionActionPoint:1"
+// data "Icon" "PassiveFeature_MageSlayer_AttackACaster"
+// data "Properties" "Highlighted"
+// data "Boosts" "UnlockInterrupt(Interrupt_MageSlayer)"
+
+new entry "Interrupt_MageSlayer"
+type "InterruptData"
+using "Interrupt_MageSlayer"
+// // Mage Slayer
+// data "DisplayName" "ha7485350ga681g4861gbd5bg3d4c8df27e98;1"
+// // Attack an enemy as a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;reaction&lt;/LSTag&gt; if they cast a spell near you. 
+// data "Description" "h9b63daaeg493bg470fga510g69dc14094f35;2"
+// data "Icon" "PassiveFeature_MageSlayer_AttackACaster"
+// data "InterruptContext" "OnSpellCast"
+// data "InterruptContextScope" "Nearby"
+// data "Container" "YesNoDecision"
+// data "Conditions" "IsAbleToReact(context.Observer) and not Self(context.Source, context.Observer) and Enemy(context.Source, context.Observer) and IsSpell() and not Uninterruptible() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and not AnyEntityIsItem()"
+data "Conditions" "Goon_BasicHarmfulInterruptConditions() and Goon_InAttackRange(false,false,false,true) and Enemy(context.Source, context.Observer) and IsSpell() and (not IsAttack() or HasLastAttackTriggered())"
+// data "Properties" "UseAttack(OBSERVER_SOURCE)"
+data "Properties" "UseSpell(OBSERVER_SOURCE,Goon_Target_MainHandAttack_Generic,true,true,true)"
+// data "Cost" "ReactionActionPoint:1"
+// data "InterruptDefaultValue" "Ask;Enabled"
+// data "EnableCondition" "not HasStatus('SG_Disguise')"
+data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions(true)"
+// data "EnableContext" "OnStatusApplied;OnStatusRemoved"
+data "InterruptFlags" "InterruptWhileInvisible"

@@ -42,6 +42,11 @@ data "SpellFlags" "IsMelee;IsHarmful"
 // data "SpellSoundMagnitude" "None"
 // data "Sheathing" "Melee"
 
+new entry "Goon_Target_MainHandAttack_Generic"
+type "SpellData"
+data "SpellType" "Target"
+using "Goon_Target_MainHandAttack_AoO"
+
 // ==================================== Opportunity Attack: Ranged Attack ====================================
 
 new entry "Goon_Projectile_MainHandAttack_AoO"

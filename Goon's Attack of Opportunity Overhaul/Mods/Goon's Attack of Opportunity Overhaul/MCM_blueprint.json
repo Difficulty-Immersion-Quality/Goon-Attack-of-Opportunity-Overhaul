@@ -4,6 +4,11 @@
         {
             "TabId": "general",
             "TabName": "General",
+            "TabDescription": "Note: Tooltip descriptions will not update after making changes until you reload.",
+            "Handles": {
+                "NameHandle": "h891d6c71g726fg4ac8g8fd5g4535f8bbe81d",
+                "DescriptionHandle": "hfe1aff9ag000bg4768gb22eg57a5f2fbcafb"
+            },
             "Settings": [
                 {
                     "Id": "Goon_CriticalMissAoO_Enabled",
@@ -14,6 +19,27 @@
                     "Handles": {
                         "NameHandle": "h7f211753gb370g4c76g9fb7gb862288382d9",
                         "DescriptionHandle": "h905c8dbdg5235g4793ga8bbg044006bfdebd"
+                    }
+                },
+                {
+                    "Id": "Goon_PolearmMasterConditions",
+                    "Name": "Polearm Master ruleset",
+                    "Description": "Choose which ruleset governs Polearm Master: Opportunity Attack weapon conditions.",
+                    "Handles": {
+                        "NameHandle": "h8d4ed634gc226g41ccgb024g4351e6f98d29",
+                        "DescriptionHandle": "h7acc0a1eg02f8g48c8g8d91g85026d11eaf2",
+                        "ChoicesHandles": [
+                            "h18ad3b53g95c5g444ag8269g4e0e60a6331d",
+                            "hf40ecdf5gaf87g4e15g9217g900e883c6f98",
+                            "h56b00418ga325g48f0gb792g8256ed7a479a",
+                            "h70adcbccg07deg49f1gb39eg876927dbca6c",
+                            "hd07cdd2ege4ddg4d1cgbcaagb334d8fd7186"
+                        ]
+                    },
+                    "Type": "radio",
+                    "Default": "2014",
+                    "Options": {
+                        "Choices": ["Vanilla", "2014", "Homebrew", "2024", "2024_RAI"]
                     }
                 },
                 {

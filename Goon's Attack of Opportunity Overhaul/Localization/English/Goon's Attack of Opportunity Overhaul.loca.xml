@@ -27,10 +27,29 @@
 	<!-- "Goon_Interrupt_AttackOfOpportunity_Grapple" -->
 	<content contentuid="h2d42c10egabbcg4f07g93dcg38d6e3b16a0f" version="1">Opportunity Attack: Grapple</content>
 
+	<!-- Polearm Master: Opportunity Attack -->
+	<!-- "Interrupt_PolearmMaster" -->
+	<content contentuid="hb31b8b64gafaag40aegb292g1927043e0a76" version="1">Prerequisite: Must be wielding a weapon with the &lt;LSTag Tooltip="Reach"&gt;Reach&lt;/LSTag&gt; property, or a quarterstaff or spear.</content>
+	<content contentuid="he426117fgdd96g4bb8gacd9gf49c9ae0a009" version="1">Prerequisite: Must be wielding a glaive, halberd, pike, quarterstaff, or spear.</content>
+	<content contentuid="haed9305bg94f5g4cdbga0b1gc7aedd23d3b7" version="1">Prerequisite: Must be wielding a glaive, halberd, pike, quarterstaff, spear, javelin, or trident.</content>
+	<content contentuid="h9a61844cgdf31g471cg8877g5f16ecdec4d1" version="1">Prerequisite: Must be wielding a weapon with the &lt;LSTag Tooltip="Heavy"&gt;Heavy&lt;/LSTag&gt; and &lt;LSTag Tooltip="Reach"&gt;Reach&lt;/LSTag&gt; properties, or a quarterstaff or spear.</content>
+	<content contentuid="h4db6d47fg3ae2g4f60g95cag00e738220b9a" version="1">Prerequisite: Must be wielding a weapon with the &lt;LSTag Tooltip="Heavy"&gt;Heavy&lt;/LSTag&gt; and &lt;LSTag Tooltip="Reach"&gt;Reach&lt;/LSTag&gt; properties, or a glaive, halberd, pike, quarterstaff, or spear.</content>
+
 	<!-- MCM -->
+	<!-- "general" -->
+	<content contentuid="h891d6c71g726fg4ac8g8fd5g4535f8bbe81d" version="1">General</content>
+	<content contentuid="hfe1aff9ag000bg4768gb22eg57a5f2fbcafb" version="1">Note: Tooltip descriptions will not update after making changes until you reload.</content>
 	<!-- "Goon_CriticalMissAoO_Enabled" -->
 	<content contentuid="h7f211753gb370g4c76g9fb7gb862288382d9" version="1">Enable Attack of Opportunity on Critical Miss</content>
 	<content contentuid="h905c8dbdg5235g4793ga8bbg044006bfdebd" version="1">Toggle this feature on or off.</content>
+	<!-- Goon_PolearmMasterConditions -->
+	<content contentuid="h8d4ed634gc226g41ccgb024g4351e6f98d29" version="1">Polearm Master ruleset</content>
+	<content contentuid="h7acc0a1eg02f8g48c8g8d91g85026d11eaf2" version="1">Choose which ruleset governs Polearm Master: Opportunity Attack weapon conditions.&lt;br&gt;&lt;br&gt;Vanilla:&lt;br&gt;- Must be wielding a weapon with the Reach property, or a quarterstaff or spear.&lt;br&gt;&lt;br&gt;2014:&lt;br&gt;- Must be wielding a glaive, halberd, pike, quarterstaff, or spear.&lt;br&gt;&lt;br&gt;Homebrew:&lt;br&gt;- Must be wielding a glaive, halberd, pike, quarterstaff, spear, javelin, or trident.&lt;br&gt;&lt;br&gt;2024:&lt;br&gt;- Must be wielding a weapon with the Heavy and Reach properties, or a quarterstaff or spear.&lt;br&gt;&lt;br&gt;2024 RAI:&lt;br&gt;- Must be wielding a weapon with the Heavy and Reach properties, or a glaive, halberd, pike, quarterstaff, or spear.</content>
+	<content contentuid="h18ad3b53g95c5g444ag8269g4e0e60a6331d" version="1">Vanilla</content>
+	<content contentuid="hf40ecdf5gaf87g4e15g9217g900e883c6f98" version="1">2014</content>
+	<content contentuid="h56b00418ga325g48f0gb792g8256ed7a479a" version="1">Homebrew</content>
+	<content contentuid="h70adcbccg07deg49f1gb39eg876927dbca6c" version="1">2024</content>
+	<content contentuid="hd07cdd2ege4ddg4d1cgbcaagb334d8fd7186" version="1">2024: Rules as Intended</content>
 	<!-- "Goon_CriticalMissAoO_Debug" -->
 	<content contentuid="hfd4d9bfag4893g4438gb5f9g635080c63763" version="1">Debug</content>
 	<content contentuid="he1028ee3g062dg410cgacc9g08f27e62ff7f" version="1">Enable debug logging.</content>

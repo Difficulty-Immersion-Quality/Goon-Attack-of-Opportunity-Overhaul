@@ -27,6 +27,10 @@
 	<!-- "Goon_Interrupt_AttackOfOpportunity_Grapple" -->
 	<content contentuid="h2d42c10egabbcg4f07g93dcg38d6e3b16a0f" version="1">Opportunity Attack: Grapple</content>
 
+	<!-- Polearm Master: Opportunity Attack -->
+	<!-- "Interrupt_PolearmMaster" -->
+	<content contentuid="he426117fgdd96g4bb8gacd9gf49c9ae0a009" version="1">Prerequisite: Must be wielding a glaive, halberd, pike, quarterstaff, or spear.</content>
+
 	<!-- MCM -->
 	<!-- "Goon_CriticalMissAoO_Enabled" -->
 	<content contentuid="h7f211753gb370g4c76g9fb7gb862288382d9" version="1">Enable Attack of Opportunity on Critical Miss</content>

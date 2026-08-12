@@ -1,2 +1,2 @@
-Ext.Require("Client/_CriticalMissAoO.lua")
-Ext.Require("Client/_Grapple.lua")
+Ext.Require("Client/CriticalMissAoO.lua")
+Ext.Require("Client/Grapple.lua")

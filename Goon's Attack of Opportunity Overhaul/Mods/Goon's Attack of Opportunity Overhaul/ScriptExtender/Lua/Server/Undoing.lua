@@ -1,4 +1,4 @@
-local AoO = Ext.Require("Shared/CriticalMiss.lua")
+local AoO = Ext.Require("Shared/AttackOfOpportunity.lua")
 local PAM = Ext.Require("Shared/PolearmMaster.lua")
 
 if MCM then

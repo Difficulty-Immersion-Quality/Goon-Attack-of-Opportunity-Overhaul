@@ -85,7 +85,7 @@ using "Goon_Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Ranged Attack
 data "DisplayName" "h298aa00egbf29g4ae8ga1d0gd31848bd639b;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions(false) and Goon_InAttackRange(true,false)"
-// "Goon_AttackOfOpportunityConditions() and Goon_InAttackRange(true,false)"
+// "Goon_AttackOfOpportunityConditions(false) or (Goon_AttackOfOpportunityConditions(true) and Goon_InAttackRange(true,false))""
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Goon_Projectile_MainHandAttack_AoO,true,true,true);IF(not IsAttack()):UseSpell(Goon_Projectile_MainHandAttack_AoO,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):ApplyStatus(SWAP,SENTINEL,100,1);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):ApplyStatus(SENTINEL,100,1)"
 data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions() and Goon_HasWeaponTypeInSlot(true,false)"
 
@@ -97,7 +97,7 @@ using "Goon_Interrupt_AttackOfOpportunity"
 // // Opportunity Attack: Off-Hand Attack (Ranged)
 data "DisplayName" "h33c9ccafg488cg4a58gb8e4g3440d8f7f5ea;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions(false) and Goon_InAttackRange(true,true)"
-// "Goon_AttackOfOpportunityConditions() and Goon_InAttackRange(true,true)"
+// "Goon_AttackOfOpportunityConditions(false) or (Goon_AttackOfOpportunityConditions(true) and Goon_InAttackRange(true,true))"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Projectile_OffhandAttack,true,true,true);IF(not IsAttack()):UseSpell(Projectile_OffhandAttack,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):ApplyStatus(SWAP,SENTINEL,100,1);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):ApplyStatus(SENTINEL,100,1)"
 data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions() and Goon_HasWeaponTypeInSlot(true,true)"
 

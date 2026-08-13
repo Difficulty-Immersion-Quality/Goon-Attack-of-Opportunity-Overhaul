@@ -110,7 +110,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "Goon_AttackOfOpportunityConditions() and Goon_InAttackRange(true,false)",
+				on = "Goon_AttackOfOpportunityConditions(false) or (Goon_AttackOfOpportunityConditions(true) and Goon_InAttackRange(true,false))",
 				off = "Goon_AttackOfOpportunityConditions(false) and Goon_InAttackRange(true,false)",
 			},
 		},
@@ -129,7 +129,7 @@ local PatchTargets = {
 				off = { "OnLeaveAttackRange" },
 			},
 			Conditions = {
-				on = "Goon_AttackOfOpportunityConditions() and Goon_InAttackRange(true,true)",
+				on = "Goon_AttackOfOpportunityConditions(false) or (Goon_AttackOfOpportunityConditions(true) and Goon_InAttackRange(true,true))",
 				off = "Goon_AttackOfOpportunityConditions(false) and Goon_InAttackRange(true,true)",
 			},
 		},

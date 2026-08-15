@@ -35,6 +35,12 @@
 	<content contentuid="h9a61844cgdf31g471cg8877g5f16ecdec4d1" version="1">Prerequisite: Must be wielding a weapon with the &lt;LSTag Tooltip="Heavy"&gt;Heavy&lt;/LSTag&gt; and &lt;LSTag Tooltip="Reach"&gt;Reach&lt;/LSTag&gt; properties, or a quarterstaff or spear.</content>
 	<content contentuid="h4db6d47fg3ae2g4f60g95cag00e738220b9a" version="1">Prerequisite: Must be wielding a weapon with the &lt;LSTag Tooltip="Heavy"&gt;Heavy&lt;/LSTag&gt; and &lt;LSTag Tooltip="Reach"&gt;Reach&lt;/LSTag&gt; properties, or a glaive, halberd, pike, quarterstaff, or spear.</content>
 
+	<!-- Sentinel -->
+	<!-- "Sentinel_Attack" -->
+	<content contentuid="h2e31ce2cg58f6g4568g8cc4gc5331b5f2017" version="1">When a creature within melee range attacks another, you may use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to make a &lt;LSTag Tooltip="MeleeWeaponAttack"&gt;melee weapon attack&lt;/LSTag&gt; against the attacker.</content>
+	<!-- "Interrupt_Sentinel" -->
+	<content contentuid="h9da65f42gfc83g44b7g9d05g992ca2993768" version="1">When a creature within melee range attacks another, you may make a &lt;LSTag Tooltip="MeleeWeaponAttack"&gt;melee weapon attack&lt;/LSTag&gt; against the attacker.</content>
+
 	<!-- MCM -->
 	<!-- "general" -->
 	<content contentuid="h891d6c71g726fg4ac8g8fd5g4535f8bbe81d" version="1">General</content>

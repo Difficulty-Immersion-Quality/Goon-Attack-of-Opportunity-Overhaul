@@ -16,7 +16,8 @@ using "Interrupt_AttackOfOpportunity"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "IsAbleToReact(context.Observer) and not Self(context.Observer, context.Target) and Enemy() and not HasStatus('SANCTUARY',context.Source) and not WieldingWeapon('Ammunition', false, false, context.Source) and not (not Player(context.Source) and Tagged('AI_IGNORED_TARGET')  and not HasStatus('GNOLL_SUDDENRUSH')) and not HasStatus('SHOCKWAVE') and not (HasStatus('MOBILE_NO_AOO', context.Source) and HasStatus('MOBILE_NO_AOO_SOURCE', context.Target)) and not HasStatus('FLAMING_SPHERE_AURA') and not HasStatus('SNEAKING',context.Target) and not HasStatus('SG_Ignore_AOO',context.Target)  and not AnyEntityIsItem() and not HasSpellFlag(SpellFlags.IgnoreAoO, context.Target) and not (HasStatus('FANCYFOOTWORK', context.Source,context.Target) and HasStatus('FANCYFOOTWORK_OWNER', context.Target)) and (not HasStatus('PANACHE', context.Source)) or (HasStatus('PANACHE', context.Source) and HasStatus('PANACHE_OWNER', context.Target));"
-data "Conditions" "Goon_AttackOfOpportunityConditions(false)"
+data "Conditions" "Goon_AttackOfOpportunityConditions(false,false,false,nil,nil)"
+// "Goon_AttackOfOpportunityConditions(nil,false,false,nil,nil)"
 // data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source)):UseAttack();IF(HasPassive('Sentinel_ZeroSpeed',context.Source)):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);TutorialEvent(SWAP,f658a860-7e3e-44fd-807b-88d3c0c31217)"
 // data "Cost" "ReactionActionPoint:1"
 // data "InterruptDefaultValue" "Enabled"
@@ -63,8 +64,8 @@ data "Description" "hb1a5b720ga19fg4c9eg9d2dg940bc896c299;1"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "not HasSpellCastBlocked(context.Observer) and IsAbleToReact(context.Observer) and Self(context.Observer, context.Source) and not Self(context.Observer, context.Target) and Enemy() and not WieldingWeapon('Ammunition', false, false, context.Source) and not HasStatus('SG_Incapacitated', context.Source) and not HasStatus('SG_Unconscious', context.Source) and not (not Player(context.Source) and Tagged('AI_IGNORED_TARGET')  and not HasStatus('GNOLL_SUDDENRUSH')) and not HasStatus('SHOCKWAVE') and not (HasStatus('MOBILE_NO_AOO', context.Source) and HasStatus('MOBILE_NO_AOO_SOURCE', context.Target)) and not HasStatus('FLAMING_SPHERE_AURA') and not HasStatus('SNEAKING',context.Target) and not HasStatus('SG_Ignore_AOO',context.Target) and not AnyEntityIsItem()"
-data "Conditions" "Goon_AttackOfOpportunityConditions(false) and not HasSpellCastBlocked(context.Observer)"
-// "(Goon_AttackOfOpportunityConditions(false) or (Goon_AttackOfOpportunityConditions(true) and Goon_InAttackRange())) and not HasSpellCastBlocked(context.Observer)"
+data "Conditions" "Goon_AttackOfOpportunityConditions(false,false,false,nil,nil) and not HasSpellCastBlocked(context.Observer)"
+// "(Goon_AttackOfOpportunityConditions(nil,false,false,nil,nil)) and not HasSpellCastBlocked(context.Observer)"
 // data "Properties" "UseSpell(Target_ShockingGrasp,true,true,true)"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_ShockingGrasp,true,true,true);IF(not IsAttack()):UseSpell(Target_ShockingGrasp,true,true,true)"
 // data "Cost" "ReactionActionPoint:1"
@@ -76,6 +77,7 @@ data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions()"
 data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== Polearm Master: Opportunity Attack ====================================
+// Bug Fix: Passive now visible on the character sheet.
 
 // new entry "PolearmMaster_AttackOfOpportunity"
 // type "PassiveData"
@@ -104,7 +106,8 @@ data "ExtraDescription" "he426117fgdd96g4bb8gacd9gf49c9ae0a009;1"
 // data "InterruptContextScope" "Self"
 // data "Container" "YesNoDecision"
 // data "Conditions" "Self(context.Source,context.Observer) and IsAbleToReact(context.Observer) and (HasWeaponProperty(WeaponProperties.Reach, GetActiveWeapon(context.Source)) or Tagged('WPN_STAVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_SPEAR', GetActiveWeapon(context.Source, true))) and Enemy() and not WieldingWeapon('Ammunition', false, false, context.Source) and not (not Player(context.Source) and Tagged('AI_IGNORED_TARGET')  and not HasStatus('GNOLL_SUDDENRUSH')) and not HasStatus('SHOCKWAVE') and not (HasStatus('MOBILE_NO_AOO', context.Source) and HasStatus('MOBILE_NO_AOO_SOURCE', context.Target)) and not HasStatus('FLAMING_SPHERE_AURA') and not HasStatus('SNEAKING',context.Target) and not HasStatus('SG_Ignore_AOO',context.Target) and not AnyEntityIsItem()"
-data "Conditions" "Goon_AttackOfOpportunityConditions(false) and (Tagged('WPN_STAVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_SPEAR', GetActiveWeapon(context.Source, true)) or Tagged('WPN_GLAIVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_HALBERD', GetActiveWeapon(context.Source, true)) or Tagged('WPN_PIKE', GetActiveWeapon(context.Source, true)))"
+data "Conditions" "Goon_AttackOfOpportunityConditions(false,false,false,nil,nil) and (Tagged('WPN_STAVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_SPEAR', GetActiveWeapon(context.Source, true)) or Tagged('WPN_GLAIVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_HALBERD', GetActiveWeapon(context.Source, true)) or Tagged('WPN_PIKE', GetActiveWeapon(context.Source, true)))"
+// "Goon_AttackOfOpportunityConditions(false,false,false,nil,nil) and (Tagged('WPN_STAVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_SPEAR', GetActiveWeapon(context.Source, true)) or Tagged('WPN_GLAIVE', GetActiveWeapon(context.Source, true)) or Tagged('WPN_HALBERD', GetActiveWeapon(context.Source, true)) or Tagged('WPN_PIKE', GetActiveWeapon(context.Source, true)))"
 // data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source)):UseAttack();IF(HasPassive('Sentinel_ZeroSpeed',context.Source)):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true)"
 data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Goon_Target_MainHandAttack_AoO,true,true,true);IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Goon_Target_MainHandAttack_AoO,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):UseSpell(Target_Sentinel_AttackOfOpportunity,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):UseSpell(SWAP,Target_Sentinel_AttackOfOpportunity,true,true,true)"
 // data "Cost" "ReactionActionPoint:1"
@@ -117,6 +120,9 @@ data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== Sentinel ====================================
 // Changes: Restrictions on what attacks you can interrupt loosened to be pseudo 5e RAW; you can now interrupt all attackers except for allies, instead of strictly enemies attacking allies.
+// Changes: No longer requires the attack made within melee range to be a melee attack, per 5e RAW.
+// Changes: Requires that you use a melee weapon, per 5e RAW.
+// Changes: Interrupt name renamed to be the same as the passive, "Sentinel: Vengeance".
 
 // data "StatsFunctorContext" "OnAttack"
 // data "Conditions" "Goon_IsAttackOfOpportunity()"
@@ -132,12 +138,15 @@ data "InterruptFlags" "InterruptWhileInvisible"
 // data "Icon" "PassiveFeature_Sentinel_ZeroSpeed"
 // data "Properties" "Highlighted"
 
-// new entry "Sentinel_Attack"
-// type "PassiveData"
+new entry "Sentinel_Attack"
+type "PassiveData"
+using "Sentinel_Attack"
 // // Sentinel: Vengeance
 // data "DisplayName" "h17b7fde5gdddbg450cg9f74gdd11aca584b1;4"
 // // When an enemy within melee range attacks an ally, you can use a reaction to make a weapon attack against that enemy.
 // data "Description" "h09141465g4771g4c38g8e53g1fbc3b0153e1;4"
+// // When a creature within melee range attacks another, you may use a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;Reaction&lt;/LSTag&gt; to make a &lt;LSTag Tooltip="MeleeWeaponAttack"&gt;melee weapon attack&lt;/LSTag&gt; against the attacker.
+data "Description" "h2e31ce2cg58f6g4568g8cc4gc5331b5f2017;1"
 // data "Icon" "PassiveFeature_Sentinel_Attack"
 // data "Properties" "Highlighted"
 // data "Boosts" "UnlockInterrupt(Interrupt_Sentinel)"
@@ -147,20 +156,24 @@ type "InterruptData"
 using "Interrupt_Sentinel"
 // // Sentinel
 // data "DisplayName" "h81cd2db2gb571g4397g806dg178adf362411;1"
+// // Sentinel: Vengeance
+data "DisplayName" "h17b7fde5gdddbg450cg9f74gdd11aca584b1;4"
 // // When an ally is attacked by a nearby creature, you may strike the attacker.
 // data "Description" "hcecec268gab67g410cg88d4g7d2241a98bb2;1"
+// // When a creature within melee range attacks another, you may make a&lt;LSTag Tooltip="MeleeWeaponAttack"&gt;melee weapon attack&lt;/LSTag&gt; against the attacker.
+data "Description" "h9da65f42gfc83g44b7g9d05g992ca2993768;1"
 // data "Icon" "PassiveFeature_Sentinel_Attack"
 // data "InterruptContext" "OnCastHit"
 // data "InterruptContextScope" "Nearby"
 // data "Container" "YesNoDecision"
 // data "Conditions" "not Self(context.Target,context.Observer) and not Self(context.Source,context.Observer) and Ally(context.Target, context.Observer) and Enemy(context.Source, context.Observer) and not HasPassive('Sentinel_Attack',context.Target) and IsAbleToReact(context.Observer) and IsMeleeAttack() and not DistanceToEntityGreaterThan(2, context.ObserverPosition, context.Source) and not AnyEntityIsItem() and HasLastAttackTriggered()"
-data "Conditions" "Goon_BasicHarmfulInterruptConditions(false,true) and Goon_InAttackRange(nil,nil,false,true) and not Self(context.Target, context.Observer) and Ally(context.Target, context.Observer) and not HasPassive('Sentinel_Attack',context.Target) and IsMeleeAttack()"
+data "Conditions" "Goon_BasicHarmfulInterruptConditions(false,true) and Goon_InAttackRange(nil,nil,false,true) and not Self(context.Target, context.Observer) and not Ally(context.Source, context.Observer) and not HasPassive('Sentinel_Attack',context.Target) and IsAttack()"
 // data "Properties" "UseAttack(OBSERVER_SOURCE)"
 data "Properties" "UseSpell(OBSERVER_SOURCE,Goon_Target_MainHandAttack_Generic,true,true,true)"
 // data "Cost" "ReactionActionPoint:1"
 // data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'},{},{'WILDSHAPE_MYRMIDON_AIR_PLAYER','WILDSHAPE_MYRMIDON_AIR_PLAYER_12','WILDSHAPE_MYRMIDON_FIRE_PLAYER','WILDSHAPE_MYRMIDON_FIRE_PLAYER_12','WILDSHAPE_MYRMIDON_WATER_PLAYER','WILDSHAPE_MYRMIDON_WATER_PLAYER_12',}) or Tagged('MINDFLAYER') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
-data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions()"
+data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions() and Goon_HasWeaponEquipped(true,true)"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
 
@@ -201,6 +214,7 @@ data "InterruptFlags" "InterruptWhileInvisible"
 // =================================== Mage Slayer: Attack Caster ===================================
 // Bug Fix: Added checks for waiting on HasLastAttackTriggered if the spell is an attack, to prevent edge cases where the interrupt cuts a spell cast short.
 // Changes: Interrupt is no longer prevented by the caster being uninterruptable, per 5e RAW.
+// Changes: Interrupt name renamed to be the same as the passive, "Mage Slayer: Attack Caster".
 
 // new entry "MageSlayer_AttackCaster"
 // type "PassiveData"
@@ -219,6 +233,8 @@ type "InterruptData"
 using "Interrupt_MageSlayer"
 // // Mage Slayer
 // data "DisplayName" "ha7485350ga681g4861gbd5bg3d4c8df27e98;1"
+// // Mage Slayer: Attack Caster
+// data "DisplayName" "h3b348abcg1ccbg4ac2gadcbgf97694100813;2"
 // // Attack an enemy as a &lt;LSTag Type="ActionResource" Tooltip="ReactionActionPoint"&gt;reaction&lt;/LSTag&gt; if they cast a spell near you. 
 // data "Description" "h9b63daaeg493bg470fga510g69dc14094f35;2"
 // data "Icon" "PassiveFeature_MageSlayer_AttackACaster"

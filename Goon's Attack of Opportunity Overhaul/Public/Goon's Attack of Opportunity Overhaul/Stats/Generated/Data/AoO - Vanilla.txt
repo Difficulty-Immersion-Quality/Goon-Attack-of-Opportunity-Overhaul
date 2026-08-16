@@ -78,6 +78,7 @@ data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== Polearm Master: Opportunity Attack ====================================
 // Bug Fix: Passive now visible on the character sheet.
+// TODO: EnableConditions with polearm checks, do in SE.
 
 // new entry "PolearmMaster_AttackOfOpportunity"
 // type "PassiveData"
@@ -114,7 +115,7 @@ data "Properties" "IF(not HasPassive('Sentinel_ZeroSpeed',context.Source) and no
 // data "Stack" "AttackOfOpportunity"
 // data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'}) or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
-data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions()"
+data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions() and Goon_HasWeaponEquipped(true,false)"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
 
@@ -173,7 +174,7 @@ data "Properties" "UseSpell(OBSERVER_SOURCE,Goon_Target_MainHandAttack_Generic,t
 // data "Cost" "ReactionActionPoint:1"
 // data "InterruptDefaultValue" "Ask;Enabled"
 // data "EnableCondition" "not HasAnyStatus({'SG_Polymorph','SG_Blinded'},{},{'WILDSHAPE_MYRMIDON_AIR_PLAYER','WILDSHAPE_MYRMIDON_AIR_PLAYER_12','WILDSHAPE_MYRMIDON_FIRE_PLAYER','WILDSHAPE_MYRMIDON_FIRE_PLAYER_12','WILDSHAPE_MYRMIDON_WATER_PLAYER','WILDSHAPE_MYRMIDON_WATER_PLAYER_12',}) or Tagged('MINDFLAYER') or HasAnyStatus({'SG_Disguise','WILDSHAPE_STARRY_ARCHER_PLAYER','WILDSHAPE_STARRY_CHALICE_PLAYER','WILDSHAPE_STARRY_DRAGON_PLAYER'});"
-data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions() and Goon_HasWeaponEquipped(true,true)"
+data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions() and Goon_HasWeaponEquipped(true,false)"
 // data "EnableContext" "OnStatusApplied;OnStatusRemoved"
 data "InterruptFlags" "InterruptWhileInvisible"
 

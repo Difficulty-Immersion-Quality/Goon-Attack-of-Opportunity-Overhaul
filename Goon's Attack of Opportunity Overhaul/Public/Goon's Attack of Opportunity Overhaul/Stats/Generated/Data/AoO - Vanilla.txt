@@ -122,24 +122,32 @@ data "EnableContext" "OnStatusApplied;OnStatusRemoved;OnEquip"
 data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== Sentinel ====================================
+// Bug Fix: The Sentinel Foe condition is now a part of the Restrained status group.
 // Changes: Restrictions on what attacks you can interrupt loosened to be pseudo 5e RAW; you can now interrupt all attackers except for allies, instead of strictly enemies attacking allies.
 // Changes: No longer requires the attack made within melee range to be a melee attack, per 5e RAW.
 // Changes: Requires that you use a melee weapon, per 5e RAW.
 // Changes: Interrupt name renamed to be the same as the passive, "Sentinel: Vengeance".
+// TODO: Khn for conditions.
+// TODO: Figure out how to get advantage for UseAttack() AoO from Sentinel: Opportunity Advantage.
 
-// data "StatsFunctorContext" "OnAttack"
-// data "Conditions" "Goon_IsAttackOfOpportunity()"
-// data "StatsFunctors" "ApplyStatus(SENTINEL,100,1)"
-// ...
-
-// new entry "Sentinel_ZeroSpeed"
-// type "PassiveData"
+new entry "Sentinel_ZeroSpeed"
+type "PassiveData"
+using "Sentinel_ZeroSpeed"
 // // Sentinel: Snare
 // data "DisplayName" "h5d1804e6g83a8g4cefga5b0g89437047cae3;4"
 // // When you hit a creature with an &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attack&lt;/LSTag&gt;, it can no longer move for the rest of its turn.
 // data "Description" "h78aadfb6g3438g4bdcg948fg08900665571d;5"
 // data "Icon" "PassiveFeature_Sentinel_ZeroSpeed"
 // data "Properties" "Highlighted"
+data "StatsFunctorContext" "OnStatusApply"
+data "Conditions" "StatusId('GOON_SENTINEL_TECHNICAL')"
+data "StatsFunctors" "ApplyStatus(SENTINEL,100,1)"
+
+new entry "GOON_SENTINEL_TECHNICAL"
+type "StatusData"
+data "StatusType" "BOOST"
+data "StatusPropertyFlags" "DisableCombatlog;DisableOverhead;DisablePortraitIndicator;ApplyToDead"
+data "StackId" "GOON_SENTINEL_TECHNICAL"
 
 new entry "Sentinel_Attack"
 type "PassiveData"
@@ -181,8 +189,9 @@ data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions(nil,nil,nil,n
 data "EnableContext" "OnStatusApplied;OnStatusRemoved;OnEquip"
 data "InterruptFlags" "InterruptWhileInvisible"
 
-// new entry "Sentinel_OpportunityAdvantage"
-// type "PassiveData"
+new entry "Sentinel_OpportunityAdvantage"
+type "PassiveData"
+using "Sentinel_OpportunityAdvantage"
 // // Sentinel: Opportunity Advantage
 // data "DisplayName" "ha6b0d656g6b78g4ddeg9ff6gd74ce7de49eb;2"
 // // You have &lt;LSTag Tooltip="Advantage"&gt;Advantage&lt;/LSTag&gt; on &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attacks&lt;/LSTag&gt;.
@@ -190,6 +199,7 @@ data "InterruptFlags" "InterruptWhileInvisible"
 // data "Icon" "PassiveFeature_Sentinel_OpportunityAdvantage"
 // data "Properties" "Highlighted"
 // data "Boosts" "IF(SpellId('Target_Sentinel_AttackOfOpportunity')):Advantage(AttackRoll)"
+data "Boosts" "IF(Goon_IsAttackOfOpportunity()):Advantage(AttackRoll)"
 
 // new entry "Target_Sentinel_AttackOfOpportunity"
 // type "SpellData"
@@ -199,9 +209,10 @@ data "InterruptFlags" "InterruptWhileInvisible"
 // data "Icon" "PassiveFeature_Sentinel_Attack"
 // data "TooltipStatusApply" "ApplyStatus(SENTINEL,100,1)"
 
-// new entry "SENTINEL"
-// type "StatusData"
-// data "StatusType" "BOOST"
+new entry "SENTINEL"
+type "StatusData"
+data "StatusType" "BOOST"
+using "SENTINEL"
 // // Sentinel Foe
 // data "DisplayName" "h08cbf9f9gf641g4a53gb074g16cc0f469658;2"
 // // Can't move. Restrained by an &lt;LSTag Tooltip="OpportunityAttack"&gt;Opportunity Attack&lt;/LSTag&gt; from a Sentinel.
@@ -213,7 +224,9 @@ data "InterruptFlags" "InterruptWhileInvisible"
 // data "TickType" "EndTurn"
 // data "Boosts" "ActionResourceBlock(Movement)"
 // data "StatusPropertyFlags" "DisableCombatlog;DisableOverhead"
+data "StatusPropertyFlags" "DisableCombatlog"
 // data "StatusGroups" "SG_RemoveOnRespec"
+data "StatusGroups" "SG_Restrained;SG_RemoveOnRespec"
 
 // =================================== Mage Slayer: Attack Caster ===================================
 // Bug Fix: Added checks for waiting on HasLastAttackTriggered if the spell is an attack, to prevent edge cases where the interrupt cuts a spell cast short.

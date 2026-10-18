@@ -78,7 +78,8 @@ data "InterruptFlags" "InterruptWhileInvisible"
 
 // ==================================== Polearm Master: Opportunity Attack ====================================
 // Bug Fix: Passive now visible on the character sheet.
-// TODO: EnableConditions with polearm checks, do in SE.
+// TODO: EnableConditions with polearm checks, do in SE. Will be nicer to have a CE.
+// TODO: HasAnyTags didn't work worth shit, try a function.
 
 // new entry "PolearmMaster_AttackOfOpportunity"
 // type "PassiveData"

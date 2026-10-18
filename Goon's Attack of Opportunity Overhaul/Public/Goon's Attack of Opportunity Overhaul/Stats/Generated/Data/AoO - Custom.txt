@@ -109,7 +109,7 @@ data "DisplayName" "h753f6667g03afg4f87g97c9ge006ca604e57;1"
 data "Conditions" "Goon_AttackOfOpportunityConditions(false,false,false,nil,nil)"
 // "Goon_AttackOfOpportunityConditions(nil,false,false,nil,nil)"
 data "Properties" "IF(IsAttack()):UseSpell(SWAP,Target_UnarmedAttack,true,true,true);IF(not IsAttack()):UseSpell(Target_UnarmedAttack,true,true,true);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and IsAttack()):ApplyStatus(SWAP,GOON_SENTINEL_TECHNICAL,100,1);IF(HasPassive('Sentinel_ZeroSpeed',context.Source) and not IsAttack()):ApplyStatus(GOON_SENTINEL_TECHNICAL,100,1)"
-data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions(nil,nil,nil,nil,false,nil,false,nil,false)"
+data "EnableCondition" "Goon_BasicHarmfulInterruptEnableConditions(nil,nil,nil,true,false,nil,false,nil,false)"
 
 // ==================================== Opportunity Attack: Shove
 
